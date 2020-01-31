@@ -12,6 +12,10 @@ Plug 'jez/vim-superman'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'iamcco/markdown-preview.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
+Plug 'tpope/vim-fugitive' 
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 "}}}
@@ -19,8 +23,8 @@ call plug#end()
 "{{{ Settings
 syntax on
 filetype plugin indent on
-set number
-set relativenumber
+" set number
+" set relativenumber
 set scrolloff=10
 set ruler
 set encoding=utf-8
@@ -33,7 +37,12 @@ map <leader><space> :let @/=''<cr>" clear search
 set background=dark
 set visualbell
 set foldmethod=marker
+set cmdheight=2
+set shortmess+=c
+set signcolumn=yes
+set updatetime=100
 colorscheme slate
+
 "}}}
 
 "{{{ Netrw like NERDtree
@@ -48,6 +57,13 @@ let g:netrw_winsize = 25
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
+let g:vimtex_compiler_latexmk = { 'options' : [ '-pdf', '-pdflatex="xelatex --shell-escape %O %S"', '-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode',  ] }
+autocmd FileType tex setlocal ts=2 sw=2 sts=0 expandtab spell
+let g:vimtex_complete_enabled = 1
+let g:vimtex_complete_close_braces = 1
+let g:vimtex_complete_ignore_cas = 1
+let g:vimtex_complete_smart_case = 1
+let g:vimtex_compiler_progname='nvr'
 "}}}
 
 "{{{ Ultisnips settings
@@ -75,3 +91,5 @@ nnoremap <C-Right> <c-w>l
 tnoremap <esc> <c-\><c-n>
 nnoremap <cr> o<esc>
 "}}}
+
+let g:python3_host_prog='/home/ricardo/anaconda3/bin/python'
