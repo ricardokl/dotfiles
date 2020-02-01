@@ -61,7 +61,7 @@ let g:vimtex_compiler_latexmk = { 'options' : [ '-pdf', '-pdflatex="xelatex --sh
 autocmd FileType tex setlocal ts=2 sw=2 sts=0 expandtab spell
 let g:vimtex_complete_enabled = 1
 let g:vimtex_complete_close_braces = 1
-let g:vimtex_complete_ignore_cas = 1
+let g:vimtex_complete_ignore_case = 1
 let g:vimtex_complete_smart_case = 1
 let g:vimtex_compiler_progname='nvr'
 "}}}
