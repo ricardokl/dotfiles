@@ -15,7 +15,7 @@ ZSH_THEME="agnoster"
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
 
-plugins=(git chucknorris vi-mode fzf zsh-autosuggestions zsh-syntax-highlighting) 
+plugins=(sudo python git chucknorris vi-mode fzf zsh-autosuggestions zsh-syntax-highlighting) 
 
 source $ZSH/oh-my-zsh.sh
 
