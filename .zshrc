@@ -34,6 +34,7 @@ alias -s pdf=zathura
 alias -s {tex,md,py}=nvim
 alias -s {docx,pptx,xlsx,ods}=libreoffice
 alias -s {mp4,mkv,webm}=mpv
+alias -s {JPG,jpg,jpeg}=viewnior
 
 alias d='dirs -v |head -10'
 alias 1='cd -'
@@ -63,3 +64,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+prompt_context() { }
