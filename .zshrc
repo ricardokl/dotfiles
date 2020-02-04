@@ -26,6 +26,8 @@ alias szrc='source ~/.zshrc'
 alias snvrc='source ~/.config/nvim/init.vim'
 alias docs='~/Documents/'
 alias 9o='~/Documents/cap/9o2019/3otri/'
+alias commit='git commit -a'
+alias push='git push'
 # alias trackpad='sudo rmmod i2c_hid && sleep 1 && sudo modprobe i2c_hid'
 
 alias -s pdf=zathura
