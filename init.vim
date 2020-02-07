@@ -4,7 +4,6 @@ set nocompatible
 call plug#begin('~/.config/nvim/plugged/')
 
 Plug 'SirVer/ultisnips'
-Plug 'tomasr/molokai'
 Plug 'bling/vim-airline'
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
@@ -26,7 +25,7 @@ filetype plugin indent on
 " set number
 " set relativenumber
 set scrolloff=10
-set ruler
+" set ruler
 set encoding=utf-8
 set hlsearch
 set incsearch
@@ -37,7 +36,7 @@ map <leader><space> :let @/=''<cr>" clear search
 set background=dark
 set visualbell
 set foldmethod=marker
-set cmdheight=2
+" set cmdheight=2
 set shortmess+=c
 set signcolumn=yes
 set updatetime=100
