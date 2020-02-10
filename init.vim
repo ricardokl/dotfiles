@@ -3,6 +3,7 @@ set nocompatible
 "{{{ Plugins
 call plug#begin('~/.config/nvim/plugged/')
 
+Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
 Plug 'lervag/vimtex'
@@ -15,6 +16,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive' 
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary' 
+Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 "}}}
@@ -25,7 +28,6 @@ filetype plugin indent on
 " set number
 " set relativenumber
 set scrolloff=10
-" set ruler
 set encoding=utf-8
 set hlsearch
 set incsearch
@@ -36,11 +38,13 @@ map <leader><space> :let @/=''<cr>" clear search
 set background=dark
 set visualbell
 set foldmethod=marker
-" set cmdheight=2
 set shortmess+=c
 set signcolumn=yes
 set updatetime=100
-colorscheme slate
+colorscheme solarized8_dark_low
+" colorscheme dracula
+" colorscheme PaperColor 
+" colorscheme badwolf 
 
 "}}}
 
@@ -56,13 +60,14 @@ let g:netrw_winsize = 25
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
+" let g:vimtex_quickfix_enabled
 let g:vimtex_compiler_latexmk = { 'options' : [ '-pdf', '-pdflatex="xelatex --shell-escape %O %S"', '-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode',  ] }
 autocmd FileType tex setlocal ts=2 sw=2 sts=0 expandtab spell
 let g:vimtex_complete_enabled = 1
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_complete_ignore_case = 1
 let g:vimtex_complete_smart_case = 1
-let g:vimtex_compiler_progname='nvr'
+" let g:vimtex_compiler_progname='nvr'
 "}}}
 
 "{{{ Ultisnips settings
@@ -89,6 +94,10 @@ nnoremap <C-Left> <c-w>h
 nnoremap <C-Right> <c-w>l
 tnoremap <esc> <c-\><c-n>
 nnoremap <cr> o<esc>
+nnoremap <leader>f :Files ~<cr>
+nnoremap <leader>sp :set spelllang=pt<cr>
+nnoremap <leader>z= z=1<cr><cr>
+cnoremap ls<cr> Buffers<cr>
 "}}}
 
 let g:python3_host_prog='/home/ricardo/anaconda3/bin/python'

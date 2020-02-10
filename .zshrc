@@ -49,6 +49,10 @@ alias 9='cd -9'
 
 alias pacfzf="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 
+vman() {
+	nvim +"Man $1 | only"
+}
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
  __conda_setup="$('/home/ricardo/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
