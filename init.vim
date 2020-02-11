@@ -2,7 +2,7 @@ set nocompatible
 
 "{{{ Plugins
 call plug#begin('~/.config/nvim/plugged/')
-
+"
 Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
@@ -18,7 +18,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary' 
 Plug 'flazz/vim-colorschemes'
-
+"
 call plug#end()
 "}}}
 
@@ -45,7 +45,7 @@ colorscheme solarized8_dark_low
 " colorscheme dracula
 " colorscheme PaperColor 
 " colorscheme badwolf 
-
+"
 "}}}
 
 "{{{ Netrw like NERDtree
@@ -81,6 +81,10 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 "}}}
   
+" {{{ FZF
+let $FZF_DEFAULT_COMMAND = 'fd -H'
+" }}}
+
 "{{{ Keybindings
 inoremap ., <esc>
 inoremap ,. <esc>
@@ -94,7 +98,9 @@ nnoremap <C-Left> <c-w>h
 nnoremap <C-Right> <c-w>l
 tnoremap <esc> <c-\><c-n>
 nnoremap <cr> o<esc>
-nnoremap <leader>f :Files ~<cr>
+nnoremap <leader>ff :Files ~<cr>
+nnoremap <leader>f. :Files ./<cr>
+nnoremap <leader>fg :Gstatus<cr>
 nnoremap <leader>sp :set spelllang=pt<cr>
 nnoremap <leader>z= z=1<cr><cr>
 cnoremap ls<cr> Buffers<cr>

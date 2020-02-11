@@ -19,6 +19,8 @@ plugins=(sudo python git chucknorris vi-mode fzf zsh-autosuggestions zsh-syntax-
 
 source $ZSH/oh-my-zsh.sh
 
+VISUAL=vim; export VISUAL EDITOR=vim; export EDITOR
+
 alias vi='nvim'
 alias nvrc='nvim ~/.config/nvim/init.vim'
 alias zrc='nvim ~/.zshrc'
