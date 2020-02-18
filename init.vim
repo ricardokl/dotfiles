@@ -6,8 +6,9 @@ call plug#begin('~/.config/nvim/plugged/')
 " Generic
 Plug 'bling/vim-airline'
 Plug 'flazz/vim-colorschemes'
-Plug 'jez/vim-superman'
+Plug 'haya14busa/is.vim'
 " Utilities
+Plug 'jez/vim-superman'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
