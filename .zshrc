@@ -28,6 +28,7 @@ alias docs='~/Documents/'
 alias 9o='~/Documents/cap/9o2019/3otri/'
 alias commit='git commit -a'
 alias push='git push'
+alias l='ls -a'
 # alias trackpad='sudo rmmod i2c_hid && sleep 1 && sudo modprobe i2c_hid'
 
 alias -s pdf=zathura
@@ -51,6 +52,10 @@ alias pacfzf="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo p
 
 vman() {
 	nvim +"Man $1 | only"
+}
+
+cl() {
+	cd $1; ls -a
 }
 
 # >>> conda initialize >>>

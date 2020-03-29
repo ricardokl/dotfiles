@@ -8,6 +8,7 @@ Plug 'bling/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug 'haya14busa/is.vim'
 " Utilities
+Plug 'dhruvasagar/vim-table-mode' 
 Plug 'jez/vim-superman'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -34,6 +35,8 @@ syntax on
 filetype plugin indent on
 set number
 " set relativenumber
+set clipboard=unnamedplus
+set tabstop=2 softtabstop=2 shiftwidth=2 "expandtab
 set scrolloff=10
 set encoding=utf-8
 set hlsearch
@@ -41,17 +44,18 @@ set incsearch
 set ignorecase
 set smartcase
 set showmatch
-map <leader><space> :let @/=''<cr>" clear search
+" map <leader><space> :let @/=''<cr>" clear search
 set background=dark
 set visualbell
 set foldmethod=marker
 set shortmess+=c
 set signcolumn=yes
 set updatetime=100
+set noemoji
 colorscheme solarized8_dark_low
 " colorscheme dracula
-" colorscheme PaperColor 
-" colorscheme badwolf 
+" colorscheme PaperColor
+" colorscheme badwolf
 "
 "}}}
 
@@ -93,8 +97,7 @@ let $FZF_DEFAULT_COMMAND = 'fd -H'
 " }}}
 
 "{{{ Keybindings
-inoremap ., <esc>
-inoremap ,. <esc>
+"{{{ Movendo nos splits
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
@@ -103,14 +106,16 @@ nnoremap <c-Down> <c-w>j
 nnoremap <c-Up> <c-w>k
 nnoremap <C-Left> <c-w>h
 nnoremap <C-Right> <c-w>l
-tnoremap <esc> <c-\><c-n>
+"}}}
+"{{{ FZF
 nnoremap <leader>ff :Files ~<cr>
 nnoremap <leader>f. :Files ./<cr>
 nnoremap <leader>fg :Gstatus<cr>
 nnoremap <leader>fb :Buffers<cr>
+"}}}
+tnoremap <esc> <c-\><c-n>
 nnoremap <leader>sp :set spelllang=pt<cr>
 nnoremap <leader>z= z=1<cr><cr>
-"
 "{{{ Remove pageup e pagedown de todos os modos
 nnoremap <PageUp> <Nop>
 nnoremap <PageDown> <Nop>
