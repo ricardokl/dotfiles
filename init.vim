@@ -7,6 +7,7 @@ call plug#begin('~/.config/nvim/plugged/')
 Plug 'bling/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug 'haya14busa/is.vim'
+"Plug 'Yggdroot/indentLine'
 " Utilities
 Plug 'dhruvasagar/vim-table-mode' 
 Plug 'jez/vim-superman'
@@ -35,8 +36,9 @@ syntax on
 filetype plugin indent on
 set number
 " set relativenumber
+set mouse=a
 set clipboard=unnamedplus
-set tabstop=2 softtabstop=2 shiftwidth=2 "expandtab
+"set tabstop=2 softtabstop=2 shiftwidth=2 "expandtab
 set scrolloff=10
 set encoding=utf-8
 set hlsearch
@@ -44,14 +46,16 @@ set incsearch
 set ignorecase
 set smartcase
 set showmatch
-" map <leader><space> :let @/=''<cr>" clear search
 set background=dark
 set visualbell
 set foldmethod=marker
 set shortmess+=c
-set signcolumn=yes
+set signcolumn=auto
 set updatetime=100
 set noemoji
+set spell
+set spelllang=en_us,pt_br
+set list listchars=tab:│\ 
 colorscheme solarized8_dark_low
 " colorscheme dracula
 " colorscheme PaperColor
@@ -73,7 +77,7 @@ let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 " let g:vimtex_quickfix_enabled
 let g:vimtex_compiler_latexmk = { 'options' : [ '-pdf', '-pdflatex="xelatex --shell-escape %O %S"', '-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode',  ] }
-autocmd FileType tex setlocal ts=2 sw=2 sts=0 expandtab spell
+autocmd FileType tex setlocal ts=2 sw=2 sts=0 noexpandtab spell
 let g:vimtex_complete_enabled = 1
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_complete_ignore_case = 1
@@ -114,8 +118,7 @@ nnoremap <leader>fg :Gstatus<cr>
 nnoremap <leader>fb :Buffers<cr>
 "}}}
 tnoremap <esc> <c-\><c-n>
-nnoremap <leader>sp :set spelllang=pt<cr>
-nnoremap <leader>z= z=1<cr><cr>
+" nnoremap <leader>sp :set spelllang=pt<cr>
 "{{{ Remove pageup e pagedown de todos os modos
 nnoremap <PageUp> <Nop>
 nnoremap <PageDown> <Nop>
@@ -131,3 +134,5 @@ cnoremap <PageDown> <Nop>
 "}}}
 
 let g:python3_host_prog='/home/ricardo/anaconda3/bin/python'
+
+set noexpandtab

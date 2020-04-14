@@ -19,6 +19,7 @@ plugins=(sudo python git chucknorris vi-mode fzf zsh-autosuggestions zsh-syntax-
 
 source $ZSH/oh-my-zsh.sh
 
+alias pandoc='/usr/bin/pandoc'
 alias vi='nvim'
 alias nvrc='nvim ~/.config/nvim/init.vim'
 alias zrc='nvim ~/.zshrc'
