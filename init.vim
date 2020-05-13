@@ -9,14 +9,17 @@ Plug 'flazz/vim-colorschemes'
 Plug 'haya14busa/is.vim'
 "Plug 'Yggdroot/indentLine'
 " Utilities
-Plug 'dhruvasagar/vim-table-mode' 
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'jez/vim-superman'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-commentary' 
+Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kassio/neoterm'
+Plug 'tpope/vim-surround'
 " Latex
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
@@ -25,9 +28,10 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'iamcco/markdown-preview.nvim'
 " Git
-Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-"
+" Python
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 call plug#end()
 "}}}
 
@@ -55,7 +59,7 @@ set updatetime=100
 set noemoji
 set spell
 set spelllang=en_us,pt_br
-set list listchars=tab:│\ 
+set list listchars=tab:│\ ,trail:-
 colorscheme solarized8_dark_low
 " colorscheme dracula
 " colorscheme PaperColor
@@ -90,15 +94,38 @@ let g:UltisnipsExandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 "}}}
- 
+
 "{{{ tex-conceal settings
 set conceallevel=1
 let g:tex_conceal='abdmg'
 "}}}
-  
-" {{{ FZF
+
+"{{{ Neoterm
+let g:neoterm_default_mod='vertical'
+let g:neoterm_direct_open_repl=1
+"}}}
+
+"{{{ FZF
 let $FZF_DEFAULT_COMMAND = 'fd -H'
 " }}}
+
+"{{{ ALE
+let g:ale_fixers = {
+\	'*': ['remove_trailing_lines', 'trim_whitespace'],
+\	'python': ['autopep8']
+\}
+let g:ale_linters = {
+\	'python': ['pylint'],
+\	'latex': ['lacheck']
+\}
+let g:ale_fix_on_save = 1
+let g:ale_open_list = 0
+"}}}
+
+function Html()
+	let texto = execute('w ! pandoc -s -t html | xclip -t text/html -selection clipboard')
+	return texto
+endfunction
 
 "{{{ Keybindings
 "{{{ Movendo nos splits
@@ -111,14 +138,32 @@ nnoremap <c-Up> <c-w>k
 nnoremap <C-Left> <c-w>h
 nnoremap <C-Right> <c-w>l
 "}}}
+nnoremap <c-L> <c-w>L
+nnoremap <c-H> <c-w>H
 "{{{ FZF
 nnoremap <leader>ff :Files ~<cr>
 nnoremap <leader>f. :Files ./<cr>
 nnoremap <leader>fg :Gstatus<cr>
 nnoremap <leader>fb :Buffers<cr>
 "}}}
+"{{{ Movendo com [x
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>
+nnoremap <silent> [c :cclose<CR>
+nnoremap <silent> ]c :lclose<CR>
+nnoremap <silent> [l :lprevious<CR>
+nnoremap <silent> ]l :lnext<CR>
+"}}}
+"{{{ Neoterm
+map <leader><leader> <Plug>(neoterm-repl-send)ap
+map <leader>p <Plug>(neoterm-repl-send)
+"}}}
 tnoremap <esc> <c-\><c-n>
-" nnoremap <leader>sp :set spelllang=pt<cr>
+vnoremap <leader>f :<c-u>'<normal O#{{{<cr>lD:'>normal o#}}}<cr>
+vnoremap <leader>( c(<c-r>")
+nnoremap <leader>h :call Html()<cr>
 "{{{ Remove pageup e pagedown de todos os modos
 nnoremap <PageUp> <Nop>
 nnoremap <PageDown> <Nop>
@@ -134,5 +179,3 @@ cnoremap <PageDown> <Nop>
 "}}}
 
 let g:python3_host_prog='/home/ricardo/anaconda3/bin/python'
-
-set noexpandtab
