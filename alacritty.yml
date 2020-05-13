@@ -1,0 +1,89 @@
+env:
+  TERM: xterm-256color
+
+window:
+  padding:
+    x: 6
+    y: 6
+  decorations: none
+  title: Alacritty
+  class:
+    instance: Alacritty
+    general: Alacritty
+
+scrolling:
+  history: 5000
+
+font:
+  normal:
+    family: monofur for PowerLine
+    style: Regular
+  bold:
+    family: monofur for PowerLine
+    style: Bold
+  italic:
+    family: monofur for PowerLine
+    style: Italic
+  bold_italic:
+    family: monofur for PowerLine
+    style: Bold Italic
+  size: 16.0
+  offset:
+    x: 1
+    y: 1
+draw_bold_text_with_bright_colors: true
+
+colors:
+  primary:
+    background: '#2c2c2c'
+    foreground: '#dcdcdc'
+
+  selection:
+    text: '0x282a36'
+    background: '0xbbc5ff'
+
+  normal:
+    black:   '0x282a36'
+    red:     '0xf07178'
+    green:   '0xc3e88d'
+    yellow:  '0xffcb6b'
+    blue:    '0x82aaff'
+    magenta: '0xc792ea'
+    cyan:    '0x89ddff'
+    white:   '0xd0d0d0'
+
+  bright:
+    black:   '0x434758'
+    red:     '0xff8b92'
+    green:   '0xddffa7'
+    yellow:  '0xffe585'
+    blue:    '0x9cc4ff'
+    magenta: '0xe1acff'
+    cyan:    '0xa3f7ff'
+    white:   '0xffffff'
+
+background_opacity: 0.98
+
+dynamic_title: true
+
+unfocused_hollow: true
+
+live_config_reload: true
+
+url:
+  launcher:
+    program: xdg-open
+
+key_bindings:
+  - { key: V,        mods: Control|Shift, action: Paste            }
+  - { key: C,        mods: Control|Shift, action: Copy             }
+  - { key: Insert,   mods: Shift,         action: PasteSelection   }
+  - { key: Key0,     mods: Control,       action: ResetFontSize    }
+  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  - { key: Add,      mods: Control,       action: IncreaseFontSize }
+  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  - { key: PageUp,    mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
+  - { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
+  - { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
+  - { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
