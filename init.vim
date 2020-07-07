@@ -6,7 +6,9 @@ call plug#begin('~/.config/nvim/plugged/')
 " Generic
 Plug 'bling/vim-airline'
 Plug 'flazz/vim-colorschemes'
+Plug 'dracula/vim'
 Plug 'haya14busa/is.vim'
+Plug 'kyoz/purify', { 'rtp': 'vim' }
 "Plug 'Yggdroot/indentLine'
 " Utilities
 Plug 'dhruvasagar/vim-table-mode'
@@ -16,12 +18,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-surround'
 " Latex
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
 " Markdown
 Plug 'vim-pandoc/vim-pandoc'
@@ -32,6 +34,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Python
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" Plug 'davidhalter/jedi-vim'
 call plug#end()
 "}}}
 
@@ -60,12 +63,18 @@ set noemoji
 set spell
 set spelllang=en_us,pt_br
 set list listchars=tab:│\ ,trail:-
-colorscheme solarized8_dark_low
-" colorscheme dracula
+set virtualedit=block
+" colorscheme solarized8_dark_low
+colorscheme dracula
 " colorscheme PaperColor
 " colorscheme badwolf
+" colorscheme purify
+let g:airline_theme='purify'
 "
 "}}}
+
+autocmd FileType tex setlocal ts=2 sw=2 sts=0 noexpandtab spell
+source ~/dotfiles/pymode.vim
 
 "{{{ Netrw like NERDtree
 let g:netrw_banner = 0
@@ -75,19 +84,18 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 "}}}
 
-"{{{ Vimtex settings
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-" let g:vimtex_quickfix_enabled
-let g:vimtex_compiler_latexmk = { 'options' : [ '-pdf', '-pdflatex="xelatex --shell-escape %O %S"', '-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode',  ] }
-autocmd FileType tex setlocal ts=2 sw=2 sts=0 noexpandtab spell
-let g:vimtex_complete_enabled = 1
-let g:vimtex_complete_close_braces = 1
-let g:vimtex_complete_ignore_case = 1
-let g:vimtex_complete_smart_case = 1
-" let g:vimtex_compiler_progname='nvr'
-"}}}
+""{{{ Vimtex settings
+"let g:tex_flavor='latex'
+"let g:vimtex_view_method='zathura'
+"let g:vimtex_quickfix_mode=0
+"" let g:vimtex_quickfix_enabled
+"let g:vimtex_compiler_latexmk = { 'options' : [ '-pdf', '-pdflatex="xelatex --shell-escape %O %S"', '-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode',  ] }
+"let g:vimtex_complete_enabled = 1
+"let g:vimtex_complete_close_braces = 1
+"let g:vimtex_complete_ignore_case = 1
+"let g:vimtex_complete_smart_case = 1
+"" let g:vimtex_compiler_progname='nvr'
+""}}}
 
 "{{{ Ultisnips settings
 let g:UltisnipsExandTrigger='<tab>'
@@ -109,18 +117,18 @@ let g:neoterm_direct_open_repl=1
 let $FZF_DEFAULT_COMMAND = 'fd -H'
 " }}}
 
-"{{{ ALE
-let g:ale_fixers = {
-\	'*': ['remove_trailing_lines', 'trim_whitespace'],
-\	'python': ['autopep8']
-\}
-let g:ale_linters = {
-\	'python': ['pylint'],
-\	'latex': ['lacheck']
-\}
-let g:ale_fix_on_save = 1
-let g:ale_open_list = 0
-"}}}
+""{{{ ALE
+"let g:ale_fixers = {
+"\	'*': ['remove_trailing_lines', 'trim_whitespace'],
+"\	'python': ['autopep8']
+"\}
+"let g:ale_linters = {
+"\	'python': ['pylint'],
+"\	'latex': ['lacheck']
+"\}
+"let g:ale_fix_on_save = 1
+"let g:ale_open_list = 0
+""}}}
 
 function Html()
 	let texto = execute('w ! pandoc -s -t html | xclip -t text/html -selection clipboard')
@@ -143,7 +151,7 @@ nnoremap <c-H> <c-w>H
 "{{{ FZF
 nnoremap <leader>ff :Files ~<cr>
 nnoremap <leader>f. :Files ./<cr>
-nnoremap <leader>fg :Gstatus<cr>
+nnoremap <leader>fs :Gstatus<cr>
 nnoremap <leader>fb :Buffers<cr>
 "}}}
 "{{{ Movendo com [x
@@ -151,8 +159,6 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
-nnoremap <silent> [c :cclose<CR>
-nnoremap <silent> ]c :lclose<CR>
 nnoremap <silent> [l :lprevious<CR>
 nnoremap <silent> ]l :lnext<CR>
 "}}}
@@ -161,9 +167,8 @@ map <leader><leader> <Plug>(neoterm-repl-send)ap
 map <leader>p <Plug>(neoterm-repl-send)
 "}}}
 tnoremap <esc> <c-\><c-n>
-vnoremap <leader>f :<c-u>'<normal O#{{{<cr>lD:'>normal o#}}}<cr>
-vnoremap <leader>( c(<c-r>")
 nnoremap <leader>h :call Html()<cr>
+nnoremap <leader>w :w <cr>:so % <cr>
 "{{{ Remove pageup e pagedown de todos os modos
 nnoremap <PageUp> <Nop>
 nnoremap <PageDown> <Nop>
@@ -177,5 +182,3 @@ cnoremap <PageUp> <Nop>
 cnoremap <PageDown> <Nop>
 "}}}
 "}}}
-
-let g:python3_host_prog='/home/ricardo/anaconda3/bin/python'

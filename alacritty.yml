@@ -1,7 +1,11 @@
 env:
   TERM: xterm-256color
 
+# {{{ Window
 window:
+  dimensions:
+    columns: 75
+    lines: 30
   padding:
     x: 6
     y: 6
@@ -10,10 +14,12 @@ window:
   class:
     instance: Alacritty
     general: Alacritty
+# }}}
 
 scrolling:
   history: 5000
 
+# {{{ Fonts
 font:
   normal:
     family: monofur for PowerLine
@@ -27,42 +33,130 @@ font:
   bold_italic:
     family: monofur for PowerLine
     style: Bold Italic
-  size: 16.0
+  size: 10.0
   offset:
     x: 1
     y: 1
 draw_bold_text_with_bright_colors: true
+# }}}
 
+# # {{{ Colors from purify
+# selection:
+#   text:       '0xFAFAFA'
+#   background: '0x252834'
+
+# primary:
+#   background: '0x313440'
+#   foreground: '0xFAFAFA'
+# normal:
+#   black:   '0x282C34'
+#   red:     '0xFF6059'
+#   green:   '0x5FFF87'
+#   yellow:  '0xFFFF87'
+#   blue:    '0x5FAFFF'
+#   magenta: '0xAF87FF'
+#   cyan:    '0x5FAFFF'
+#   white:   '0xFAFAFA'
+
+# bright:
+#   black:   '0x282C34'
+#   red:     '0xFF6059'
+#   green:   '0x5FFF87'
+#   yellow:  '0xFFFF87'
+#   blue:    '0x5FAFFF'
+#   magenta: '0xAF87FF'
+#   cyan:    '0x5FAFFF'
+#   white:   '0xFAFAFA'
+# # }}}
+
+# {{{ Old colors
+#colors:
+#  primary:
+#    background: '#2c2c2c'
+#    foreground: '#dcdcdc'
+#
+#  selection:
+#    text: '0x282a36'
+#    background: '0xbbc5ff'
+#
+#  normal:
+#    black:   '0x282a36'
+#    red:     '0xf07178'
+#    green:   '0xc3e88d'
+#    yellow:  '0xffcb6b'
+#    blue:    '0x82aaff'
+#    magenta: '0xc792ea'
+#    cyan:    '0x89ddff'
+#    white:   '0xd0d0d0'
+#
+#  bright:
+#    black:   '0x434758'
+#    red:     '0xff8b92'
+#    green:   '0xddffa7'
+#    yellow:  '0xffe585'
+#    blue:    '0x9cc4ff'
+#    magenta: '0xe1acff'
+#    cyan:    '0xa3f7ff'
+#    white:   '0xffffff'
+# }}}
+
+#{{{
+# Colors (Dracula)
 colors:
+  # Default colors
   primary:
-    background: '#2c2c2c'
-    foreground: '#dcdcdc'
+    background: '0x282a36'
+    foreground: '0xf8f8f2'
 
-  selection:
-    text: '0x282a36'
-    background: '0xbbc5ff'
+  cursor:
+    text: '0x44475a'
+    cursor: '0xf8f8f2'
 
+  # Normal colors
   normal:
-    black:   '0x282a36'
-    red:     '0xf07178'
-    green:   '0xc3e88d'
-    yellow:  '0xffcb6b'
-    blue:    '0x82aaff'
-    magenta: '0xc792ea'
-    cyan:    '0x89ddff'
-    white:   '0xd0d0d0'
+    black:   '0x000000'
+    red:     '0xff5555'
+    green:   '0x50fa7b'
+    yellow:  '0xf1fa8c'
+    blue:    '0xbd93f9'
+    magenta: '0xff79c6'
+    cyan:    '0x8be9fd'
+    white:   '0xbfbfbf'
 
+  # Bright colors
   bright:
-    black:   '0x434758'
-    red:     '0xff8b92'
-    green:   '0xddffa7'
-    yellow:  '0xffe585'
-    blue:    '0x9cc4ff'
-    magenta: '0xe1acff'
-    cyan:    '0xa3f7ff'
-    white:   '0xffffff'
+    black:   '0x4d4d4d'
+    red:     '0xff6e67'
+    green:   '0x5af78e'
+    yellow:  '0xf4f99d'
+    blue:    '0xcaa9fa'
+    magenta: '0xff92d0'
+    cyan:    '0x9aedfe'
+    white:   '0xe6e6e6'
 
-background_opacity: 0.98
+  # Dim colors
+  dim:
+    black:   '0x14151b'
+    red:     '0xff2222'
+    green:   '0x1ef956'
+    yellow:  '0xebf85b'
+    blue:    '0x4d5b86'
+    magenta: '0xff46b0'
+    cyan:    '0x59dffc'
+    white:   '0xe6e6d1'
+
+  # Indexed Colors
+  #
+  # The indexed colors include all colors from 16 to 256.
+  # When these are not set, they're filled with sensible defaults.
+  #
+  # Example:
+  #   `- { index: 16, color: '0xff00ff' }`
+  #
+  indexed_colors: []
+#}}}
+
+background_opacity: 0.90
 
 dynamic_title: true
 
@@ -74,6 +168,7 @@ url:
   launcher:
     program: xdg-open
 
+# {{{ Key bindings
 key_bindings:
   - { key: V,        mods: Control|Shift, action: Paste            }
   - { key: C,        mods: Control|Shift, action: Copy             }
@@ -87,3 +182,4 @@ key_bindings:
   - { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
   - { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
   - { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+# }}}
