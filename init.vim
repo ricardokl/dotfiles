@@ -9,21 +9,22 @@ Plug 'flazz/vim-colorschemes'
 Plug 'dracula/vim'
 Plug 'haya14busa/is.vim'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
-"Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 " Utilities
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'jez/vim-superman'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
-" Plug 'dense-analysis/ale'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-surround'
 " Latex
-" Plug 'lervag/vimtex'
+Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
 " Markdown
 Plug 'vim-pandoc/vim-pandoc'
@@ -33,8 +34,12 @@ Plug 'iamcco/markdown-preview.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Python
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-" Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neco-vim'
+Plug 'deoplete-plugins/deoplete-jedi'
+" Plug 'zchee/deoplete-jedi'
+Plug 'skammer/vim-css-color'
+Plug 'liuchengxu/vista.vim'
 call plug#end()
 "}}}
 
@@ -62,8 +67,9 @@ set updatetime=100
 set noemoji
 set spell
 set spelllang=en_us,pt_br
-set list listchars=tab:│\ ,trail:-
+set list listchars=trail:-
 set virtualedit=block
+set completeopt=menu
 " colorscheme solarized8_dark_low
 colorscheme dracula
 " colorscheme PaperColor
@@ -74,7 +80,16 @@ let g:airline_theme='purify'
 "}}}
 
 autocmd FileType tex setlocal ts=2 sw=2 sts=0 noexpandtab spell
-source ~/dotfiles/pymode.vim
+let g:deoplete#enable_at_startup = 1
+inoremap <C-space> :call deoplete#complete()
+let g:vista#renderer#enable_icon = 1
+let g:vista_fzf_preview = ['right:50%']
+let g:vista_default_executive = 'ctags'
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista#renderer#icons = {
+\   "function": "ﬀ",
+\   "variable": "✗",
+\  }
 
 "{{{ Netrw like NERDtree
 let g:netrw_banner = 0
@@ -169,6 +184,10 @@ map <leader>p <Plug>(neoterm-repl-send)
 tnoremap <esc> <c-\><c-n>
 nnoremap <leader>h :call Html()<cr>
 nnoremap <leader>w :w <cr>:so % <cr>
+nmap <Leader>z <Plug>(Limelight)
+xmap <Leader>z <Plug>(Limelight)
+nnoremap <leader>x :Limelight0.8<cr>
+nnoremap <leader>c :Limelight!<cr>
 "{{{ Remove pageup e pagedown de todos os modos
 nnoremap <PageUp> <Nop>
 nnoremap <PageDown> <Nop>

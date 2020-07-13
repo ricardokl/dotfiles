@@ -21,7 +21,10 @@ color index		color84		default 	~F # flagged messages
 color index		color117	default 	~N # new messages
 color index		color212	default 	~Q # messages which have been replied to
 color index		color215	default 	~T # tagged messages
-color index		color141	default		~v # messages part of a collapsed thread
+color index		color141	default 	~v # messages part of a collapsed thread
+color index_subject		brightyellow	default	'.*'
+color index_author		brightred	default '.*'
+# color index_subject		brightcyan	default '.*'
 
 # message headers ---- foreground ---- background -----------------------------
 color hdrdefault	color117	default
