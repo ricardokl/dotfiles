@@ -30,7 +30,7 @@ set use_from = yes
 
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
-mailboxes =INBOX =CAp-UERJ
+mailboxes =INBOX =CAp-UERJ =Pessoal
 unset record                # Gmail auto-stores in "+[Gmail].Sent Mail"
 unset trash                 # Unset, deletion will remove labels
 set postponed = "+[Gmail].Drafts"

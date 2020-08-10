@@ -5,10 +5,8 @@ call plug#begin('~/.config/nvim/plugged/')
 "
 " Generic
 Plug 'bling/vim-airline'
-Plug 'flazz/vim-colorschemes'
 Plug 'dracula/vim'
 Plug 'haya14busa/is.vim'
-Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -23,6 +21,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-surround'
+Plug 'voldikss/vim-floaterm'
 " Latex
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
@@ -37,8 +36,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim'
 Plug 'deoplete-plugins/deoplete-jedi'
-" Plug 'zchee/deoplete-jedi'
-Plug 'skammer/vim-css-color'
 Plug 'liuchengxu/vista.vim'
 call plug#end()
 "}}}
@@ -47,7 +44,6 @@ call plug#end()
 syntax on
 filetype plugin indent on
 set number
-" set relativenumber
 set mouse=a
 set clipboard=unnamedplus
 "set tabstop=2 softtabstop=2 shiftwidth=2 "expandtab
@@ -70,16 +66,11 @@ set spelllang=en_us,pt_br
 set list listchars=trail:-
 set virtualedit=block
 set completeopt=menu
-" colorscheme solarized8_dark_low
 colorscheme dracula
-" colorscheme PaperColor
-" colorscheme badwolf
-" colorscheme purify
-let g:airline_theme='purify'
+let g:dracula_colorterm = 0
 "
 "}}}
 
-autocmd FileType tex setlocal ts=2 sw=2 sts=0 noexpandtab spell
 let g:deoplete#enable_at_startup = 1
 inoremap <C-space> :call deoplete#complete()
 let g:vista#renderer#enable_icon = 1
@@ -130,25 +121,29 @@ let g:neoterm_direct_open_repl=1
 
 "{{{ FZF
 let $FZF_DEFAULT_COMMAND = 'fd -H'
+" let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6 ,'border': 'sharp' } }
 " }}}
 
-""{{{ ALE
-"let g:ale_fixers = {
-"\	'*': ['remove_trailing_lines', 'trim_whitespace'],
-"\	'python': ['autopep8']
-"\}
-"let g:ale_linters = {
-"\	'python': ['pylint'],
-"\	'latex': ['lacheck']
-"\}
-"let g:ale_fix_on_save = 1
-"let g:ale_open_list = 0
-""}}}
+"{{{ Floaterm
+let g:floaterm_keymap_toggle = '<F1>'
+let g:floaterm_keymap_next   = '<F2>'
+let g:floaterm_keymap_prev   = '<F3>'
+let g:floaterm_keymap_new    = '<F4>'
 
-function Html()
+let g:floaterm_gitcommit='floaterm'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+"}}}
+
+function! Html()
 	let texto = execute('w ! pandoc -s -t html | xclip -t text/html -selection clipboard')
 	return texto
 endfunction
+
+command! Ls Buffers
 
 "{{{ Keybindings
 "{{{ Movendo nos splits
@@ -184,8 +179,8 @@ map <leader>p <Plug>(neoterm-repl-send)
 tnoremap <esc> <c-\><c-n>
 nnoremap <leader>h :call Html()<cr>
 nnoremap <leader>w :w <cr>:so % <cr>
-nmap <Leader>z <Plug>(Limelight)
-xmap <Leader>z <Plug>(Limelight)
+nmap <Leader>z <Plug>(Limelight)<cr>
+xmap <Leader>z <Plug>(Limelight)<cr>
 nnoremap <leader>x :Limelight0.8<cr>
 nnoremap <leader>c :Limelight!<cr>
 "{{{ Remove pageup e pagedown de todos os modos
@@ -201,3 +196,33 @@ cnoremap <PageUp> <Nop>
 cnoremap <PageDown> <Nop>
 "}}}
 "}}}
+
+function! OpenFloatingWin()
+  let height = &lines - 3
+  let width = float2nr(&columns - (&columns * 2 / 10))
+  let col = float2nr((&columns - width) / 2)
+
+  "Set the position, size, etc. of the floating window.
+  "The size configuration here may not be so flexible, and there's room for further improvement.
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': height * 0.3,
+        \ 'col': col + 30,
+        \ 'width': width * 2 / 3,
+        \ 'height': height / 2
+        \ }
+
+  let buf = nvim_create_buf(v:false, v:true)
+  let win = nvim_open_win(buf, v:true, opts)
+
+  "Set Floating Window Highlighting
+  call setwinvar(win, '&winhl', 'Normal:Pmenu')
+
+  setlocal
+        \ buftype=nofile
+        \ nobuflisted
+        \ bufhidden=hide
+        \ nonumber
+        \ norelativenumber
+        \ signcolumn=no
+endfunction
