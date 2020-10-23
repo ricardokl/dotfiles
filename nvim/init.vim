@@ -49,6 +49,7 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 "}}}
 
+"{{{ Sourcing
 source ~/dotfiles/nvim/settings.vim
 source ~/dotfiles/nvim/keybindings.vim
 source ~/dotfiles/nvim/startscreen.vim
@@ -62,19 +63,24 @@ source ~/dotfiles/nvim/fzf.vim
 source ~/dotfiles/nvim/markdownpreview.vim
 source ~/dotfiles/nvim/indentline.vim
 source ~/dotfiles/nvim/coc.vim
+"}}}
 
-"{{{
+"{{{ Funções
 function! Html()
 	let texto = execute('w ! pandoc -s -t html | xclip -t text/html -selection clipboard')
 	return texto
 endfunction
 "}}}
 
+"{{{ Comandos
 command! Ls Buffers
 command! Tab tabnew
+"}}}
 
+"{{{ Au groups
 augroup markdown
 	autocmd FileType markdown let b:surround_{char2nr('b')} = "**\r**"
 	autocmd FileType markdown let b:surround_{char2nr('e')} = "$$\n\r\n$$"
 	autocmd FileType markdown let b:surround_{char2nr('$')} = "$\r$"
 augroup END
+"}}}
