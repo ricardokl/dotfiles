@@ -7,6 +7,14 @@
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
 $FZF_DEFAULT_COMMAND	nvim/fzf.vim	/^let $FZF_DEFAULT_COMMAND = 'fd -H'$/;"	v
+0	nvim/coc-settings.json	/^    "UltiSnips",$/;"	s	array:snippets.ultisnips.directories
+0	nvim/coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "yaml",  "json", "python,/;"	s	array:coc.preferences.formatOnSaveFiletypes
+1	nvim/coc-settings.json	/^    "~\/.config\/nvim\/UltiSnips"$/;"	s	array:snippets.ultisnips.directories
+1	nvim/coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "yaml",  "json", "python,/;"	s	array:coc.preferences.formatOnSaveFiletypes
+2	nvim/coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "yaml",  "json", "python,/;"	s	array:coc.preferences.formatOnSaveFiletypes
+3	nvim/coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "yaml",  "json", "python,/;"	s	array:coc.preferences.formatOnSaveFiletypes
+4	nvim/coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "yaml",  "json", "python,/;"	s	array:coc.preferences.formatOnSaveFiletypes
+5	nvim/coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "yaml",  "json", "python,/;"	s	array:coc.preferences.formatOnSaveFiletypes
 <BS>	nvim/keybindings.vim	/^nnoremap <BS> X$/;"	m
 <C-Left>	nvim/keybindings.vim	/^nnoremap <C-Left> <c-w>h$/;"	m
 <C-Right>	nvim/keybindings.vim	/^nnoremap <C-Right> <c-w>l$/;"	m
@@ -81,6 +89,7 @@ ac	nvim/coc.vim	/^omap ac <Plug>(coc-classobj-a)$/;"	m
 ac	nvim/coc.vim	/^xmap ac <Plug>(coc-classobj-a)$/;"	m
 af	nvim/coc.vim	/^omap af <Plug>(coc-funcobj-a)$/;"	m
 af	nvim/coc.vim	/^xmap af <Plug>(coc-funcobj-a)$/;"	m
+coc.preferences.formatOnSaveFiletypes	nvim/coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "yaml",  "json", "python,/;"	a
 dotfiles	README.md	/^# dotfiles$/;"	c
 g:UltiSnipsJumpBackwardTrigger	nvim/ultisnips.vim	/^let g:UltiSnipsJumpBackwardTrigger='<s-tab>'$/;"	v
 g:UltiSnipsJumpForwardTrigger	nvim/ultisnips.vim	/^let g:UltiSnipsJumpForwardTrigger='<tab>'$/;"	v
@@ -104,52 +113,52 @@ g:netrw_banner	nvim/netrw.vim	/^let g:netrw_banner = 0$/;"	v
 g:netrw_browse_split	nvim/netrw.vim	/^let g:netrw_browse_split = 4$/;"	v
 g:netrw_liststyle	nvim/netrw.vim	/^let g:netrw_liststyle = 3$/;"	v
 g:netrw_winsize	nvim/netrw.vim	/^let g:netrw_winsize = 25$/;"	v
-g:pymode	pymode.vim	/^let g:pymode = 1$/;"	v
-g:pymode_breakpoint	pymode.vim	/^let g:pymode_breakpoint = 1$/;"	v
-g:pymode_breakpoint_bind	pymode.vim	/^let g:pymode_breakpoint_bind = '<leader>b'$/;"	v
-g:pymode_doc	pymode.vim	/^let g:pymode_doc = 1$/;"	v
-g:pymode_doc_bind	pymode.vim	/^let g:pymode_doc_bind = 'K'$/;"	v
-g:pymode_indent	pymode.vim	/^let g:pymode_indent = 1$/;"	v
-g:pymode_lint	pymode.vim	/^let g:pymode_lint = 1$/;"	v
-g:pymode_lint_checkers	pymode.vim	/^let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint']$/;"	v
-g:pymode_lint_comment_symbol	pymode.vim	/^let g:pymode_lint_comment_symbol = 'CC'$/;"	v
-g:pymode_lint_cwindow	pymode.vim	/^let g:pymode_lint_cwindow = 1$/;"	v
-g:pymode_lint_error_symbol	pymode.vim	/^let g:pymode_lint_error_symbol = 'EE'$/;"	v
-g:pymode_lint_info_symbol	pymode.vim	/^let g:pymode_lint_info_symbol = 'II'$/;"	v
-g:pymode_lint_message	pymode.vim	/^let g:pymode_lint_message = 1$/;"	v
-g:pymode_lint_on_write	pymode.vim	/^let g:pymode_lint_on_write = 1$/;"	v
-g:pymode_lint_pyflakes_symbol	pymode.vim	/^let g:pymode_lint_pyflakes_symbol = 'FF'$/;"	v
-g:pymode_lint_signs	pymode.vim	/^let g:pymode_lint_signs = 1$/;"	v
-g:pymode_lint_todo_symbol	pymode.vim	/^let g:pymode_lint_todo_symbol = 'WW'$/;"	v
-g:pymode_lint_visual_symbol	pymode.vim	/^let g:pymode_lint_visual_symbol = 'RR'$/;"	v
-g:pymode_motion	pymode.vim	/^let g:pymode_motion = 1$/;"	v
-g:pymode_option_max_line_lenght	pymode.vim	/^let g:pymode_option_max_line_lenght = 79$/;"	v
-g:pymode_options	pymode.vim	/^let g:pymode_options = 1$/;"	v
-g:pymode_options_colorcolumn	pymode.vim	/^let g:pymode_options_colorcolumn = 1$/;"	v
-g:pymode_preview_height	pymode.vim	/^let g:pymode_preview_height = &previewheight$/;"	v
-g:pymode_quickfix_maxheight	pymode.vim	/^let g:pymode_quickfix_maxheight = 6$/;"	v
-g:pymode_quickfix_minheight	pymode.vim	/^let g:pymode_quickfix_minheight = 3$/;"	v
-g:pymode_rope_complete_on_dot	pymode.vim	/^let g:pymode_rope_complete_on_dot = 1$/;"	v
-g:pymode_rope_completion	pymode.vim	/^let g:pymode_rope_completion = 1$/;"	v
-g:pymode_rope_completion_bind	pymode.vim	/^let g:pymode_rope_completion_bind = '<C-Space>'$/;"	v
-g:pymode_run	pymode.vim	/^let g:pymode_run = 1$/;"	v
-g:pymode_run_bind	pymode.vim	/^let g:pymode_run_bind = '<leader><space>'$/;"	v
-g:pymode_syntax	pymode.vim	/^let g:pymode_syntax = 1$/;"	v
-g:pymode_syntax_all	pymode.vim	/^let g:pymode_syntax_all = 1$/;"	v
-g:pymode_syntax_builtin_objs	pymode.vim	/^let g:pymode_syntax_builtin_objs = g:pymode_syntax_all$/;"	v
-g:pymode_syntax_builtin_types	pymode.vim	/^let g:pymode_syntax_builtin_types = g:pymode_syntax_all$/;"	v
-g:pymode_syntax_doctests	pymode.vim	/^let g:pymode_syntax_doctests = g:pymode_syntax_all$/;"	v
-g:pymode_syntax_highlight_equal_operator	pymode.vim	/^let g:pymode_syntax_highlight_equal_operator = g:pymode_syntax_all$/;"	v
-g:pymode_syntax_highlight_stars_operator	pymode.vim	/^let g:pymode_syntax_highlight_stars_operator = g:pymode_syntax_all$/;"	v
-g:pymode_syntax_indent_errors	pymode.vim	/^let g:pymode_syntax_indent_errors = g:pymode_syntax_all$/;"	v
-g:pymode_syntax_print_as_function	pymode.vim	/^let g:pymode_syntax_print_as_function = 1$/;"	v
-g:pymode_syntax_slow_sync	pymode.vim	/^let g:pymode_syntax_slow_sync = 1$/;"	v
-g:pymode_syntax_space_errors	pymode.vim	/^let g:pymode_syntax_space_errors = g:pymode_syntax_all$/;"	v
-g:pymode_syntax_string_format	pymode.vim	/^let g:pymode_syntax_string_format = g:pymode_syntax_all$/;"	v
-g:pymode_syntax_string_formatting	pymode.vim	/^let g:pymode_syntax_string_formatting = g:pymode_syntax_all$/;"	v
-g:pymode_syntax_string_templates	pymode.vim	/^let g:pymode_syntax_string_templates = g:pymode_syntax_all$/;"	v
-g:pymode_trim_whitespaces	pymode.vim	/^let g:pymode_trim_whitespaces = 1$/;"	v
-g:pymode_warnings	pymode.vim	/^let g:pymode_warnings = 1$/;"	v
+g:pymode	nvim/pymode.vim	/^let g:pymode = 1$/;"	v
+g:pymode_breakpoint	nvim/pymode.vim	/^let g:pymode_breakpoint = 1$/;"	v
+g:pymode_breakpoint_bind	nvim/pymode.vim	/^let g:pymode_breakpoint_bind = '<leader>b'$/;"	v
+g:pymode_doc	nvim/pymode.vim	/^let g:pymode_doc = 1$/;"	v
+g:pymode_doc_bind	nvim/pymode.vim	/^let g:pymode_doc_bind = 'K'$/;"	v
+g:pymode_indent	nvim/pymode.vim	/^let g:pymode_indent = 1$/;"	v
+g:pymode_lint	nvim/pymode.vim	/^let g:pymode_lint = 1$/;"	v
+g:pymode_lint_checkers	nvim/pymode.vim	/^let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint']$/;"	v
+g:pymode_lint_comment_symbol	nvim/pymode.vim	/^let g:pymode_lint_comment_symbol = 'CC'$/;"	v
+g:pymode_lint_cwindow	nvim/pymode.vim	/^let g:pymode_lint_cwindow = 1$/;"	v
+g:pymode_lint_error_symbol	nvim/pymode.vim	/^let g:pymode_lint_error_symbol = 'EE'$/;"	v
+g:pymode_lint_info_symbol	nvim/pymode.vim	/^let g:pymode_lint_info_symbol = 'II'$/;"	v
+g:pymode_lint_message	nvim/pymode.vim	/^let g:pymode_lint_message = 1$/;"	v
+g:pymode_lint_on_write	nvim/pymode.vim	/^let g:pymode_lint_on_write = 1$/;"	v
+g:pymode_lint_pyflakes_symbol	nvim/pymode.vim	/^let g:pymode_lint_pyflakes_symbol = 'FF'$/;"	v
+g:pymode_lint_signs	nvim/pymode.vim	/^let g:pymode_lint_signs = 1$/;"	v
+g:pymode_lint_todo_symbol	nvim/pymode.vim	/^let g:pymode_lint_todo_symbol = 'WW'$/;"	v
+g:pymode_lint_visual_symbol	nvim/pymode.vim	/^let g:pymode_lint_visual_symbol = 'RR'$/;"	v
+g:pymode_motion	nvim/pymode.vim	/^let g:pymode_motion = 1$/;"	v
+g:pymode_option_max_line_lenght	nvim/pymode.vim	/^let g:pymode_option_max_line_lenght = 79$/;"	v
+g:pymode_options	nvim/pymode.vim	/^let g:pymode_options = 1$/;"	v
+g:pymode_options_colorcolumn	nvim/pymode.vim	/^let g:pymode_options_colorcolumn = 1$/;"	v
+g:pymode_preview_height	nvim/pymode.vim	/^let g:pymode_preview_height = &previewheight$/;"	v
+g:pymode_quickfix_maxheight	nvim/pymode.vim	/^let g:pymode_quickfix_maxheight = 6$/;"	v
+g:pymode_quickfix_minheight	nvim/pymode.vim	/^let g:pymode_quickfix_minheight = 3$/;"	v
+g:pymode_rope_complete_on_dot	nvim/pymode.vim	/^let g:pymode_rope_complete_on_dot = 1$/;"	v
+g:pymode_rope_completion	nvim/pymode.vim	/^let g:pymode_rope_completion = 1$/;"	v
+g:pymode_rope_completion_bind	nvim/pymode.vim	/^let g:pymode_rope_completion_bind = '<C-Space>'$/;"	v
+g:pymode_run	nvim/pymode.vim	/^let g:pymode_run = 1$/;"	v
+g:pymode_run_bind	nvim/pymode.vim	/^let g:pymode_run_bind = '<leader><space>'$/;"	v
+g:pymode_syntax	nvim/pymode.vim	/^let g:pymode_syntax = 1$/;"	v
+g:pymode_syntax_all	nvim/pymode.vim	/^let g:pymode_syntax_all = 1$/;"	v
+g:pymode_syntax_builtin_objs	nvim/pymode.vim	/^let g:pymode_syntax_builtin_objs = g:pymode_syntax_all$/;"	v
+g:pymode_syntax_builtin_types	nvim/pymode.vim	/^let g:pymode_syntax_builtin_types = g:pymode_syntax_all$/;"	v
+g:pymode_syntax_doctests	nvim/pymode.vim	/^let g:pymode_syntax_doctests = g:pymode_syntax_all$/;"	v
+g:pymode_syntax_highlight_equal_operator	nvim/pymode.vim	/^let g:pymode_syntax_highlight_equal_operator = g:pymode_syntax_all$/;"	v
+g:pymode_syntax_highlight_stars_operator	nvim/pymode.vim	/^let g:pymode_syntax_highlight_stars_operator = g:pymode_syntax_all$/;"	v
+g:pymode_syntax_indent_errors	nvim/pymode.vim	/^let g:pymode_syntax_indent_errors = g:pymode_syntax_all$/;"	v
+g:pymode_syntax_print_as_function	nvim/pymode.vim	/^let g:pymode_syntax_print_as_function = 1$/;"	v
+g:pymode_syntax_slow_sync	nvim/pymode.vim	/^let g:pymode_syntax_slow_sync = 1$/;"	v
+g:pymode_syntax_space_errors	nvim/pymode.vim	/^let g:pymode_syntax_space_errors = g:pymode_syntax_all$/;"	v
+g:pymode_syntax_string_format	nvim/pymode.vim	/^let g:pymode_syntax_string_format = g:pymode_syntax_all$/;"	v
+g:pymode_syntax_string_formatting	nvim/pymode.vim	/^let g:pymode_syntax_string_formatting = g:pymode_syntax_all$/;"	v
+g:pymode_syntax_string_templates	nvim/pymode.vim	/^let g:pymode_syntax_string_templates = g:pymode_syntax_all$/;"	v
+g:pymode_trim_whitespaces	nvim/pymode.vim	/^let g:pymode_trim_whitespaces = 1$/;"	v
+g:pymode_warnings	nvim/pymode.vim	/^let g:pymode_warnings = 1$/;"	v
 g:startify_bookmarks	nvim/startscreen.vim	/^let g:startify_bookmarks = [$/;"	v
 g:startify_files_number	nvim/startscreen.vim	/^let g:startify_files_number = 5$/;"	v
 g:startify_fortune_use_unicode	nvim/startscreen.vim	/^let g:startify_fortune_use_unicode = 1$/;"	v
@@ -176,6 +185,8 @@ if	nvim/coc.vim	/^omap if <Plug>(coc-funcobj-i)$/;"	m
 if	nvim/coc.vim	/^xmap if <Plug>(coc-funcobj-i)$/;"	m
 markdown	nvim/init.vim	/^augroup markdown$/;"	a
 mygroup	nvim/coc.vim	/^augroup mygroup$/;"	a
+python.linting.pylintEnabled	nvim/coc-settings.json	/^  "python.linting.pylintEnabled": true,$/;"	b
 r	libinput-gestures.conf	/^gesture swipe up 3 wmctrl -r :ACTIVE: -b toggle,maximized_horz,maximized_vert$/;"	k
 s:check_back_space	nvim/coc.vim	/^function! s:check_back_space() abort$/;"	f
 s:show_documentation	nvim/coc.vim	/^function! s:show_documentation()$/;"	f
+snippets.ultisnips.directories	nvim/coc-settings.json	/^  "snippets.ultisnips.directories":$/;"	a

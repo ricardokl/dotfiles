@@ -1,7 +1,0 @@
-#!/bin/bash
-
-ln -s ./alacritty.yml ~/.config/alacritty/alacritty.yml
-ln -s ./init.vim ~/.config/nvim/init.vim
-ln -s ./tex.snippets ~/.config/nvim/UltiSnips/tex.snippets
-ln -s ./.zshrc ~/.zshrc
-ln -s ./libinput-gestures.conf ~/.config/libinput-gestures.conf
