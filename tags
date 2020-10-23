@@ -95,7 +95,6 @@ g:floaterm_keymap_toggle	nvim/floaterm.vim	/^let g:floaterm_keymap_toggle = '<F1
 g:floaterm_width	nvim/floaterm.vim	/^let g:floaterm_width=0.8$/;"	v
 g:floaterm_wintitle	nvim/floaterm.vim	/^let g:floaterm_wintitle=0$/;"	v
 g:fzf_layout	nvim/fzf.vim	/^let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6 ,'border': 'sharp' } }$/;"	v
-g:gitgutter_async	nvim/init.vim	/^let g:gitgutter_async=0$/;"	v
 g:indentLine_char	nvim/indentline.vim	/^let g:indentLine_char = '▏'$/;"	v
 g:mkdp_browser	nvim/markdownpreview.vim	/^let g:mkdp_browser = 'firefox'$/;"	v
 g:neoterm_default_mod	nvim/neoterm.vim	/^let g:neoterm_default_mod='vertical'$/;"	v
