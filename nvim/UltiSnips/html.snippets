@@ -1,0 +1,88 @@
+snippet a "Link" w
+<a href="${1:http://www.${2:url.com}}"${3: target="_blank"}>${4:Anchor Text}</a>
+endsnippet
+
+snippet abbr "<abbr>" w
+<abbr title="$2">$1</abbr>
+endsnippet
+
+snippet aside "<aside>"
+<aside>
+	${1:aside content}
+</aside>
+endsnippet
+
+snippet div "<div>" w
+<${1:div}>
+	${0:${VISUAL}}
+</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet div# "<div> with ID & class" w
+<div`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""``!p snip.rv=' class="' if t[2] else ""`${2:name}`!p snip.rv = '"' if t[2] else ""`>
+	${0:${VISUAL}}
+</div>
+endsnippet
+
+snippet div. "<div> with class" w
+<div`!p snip.rv=' class="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
+	${0:${VISUAL}}
+</div>
+endsnippet
+
+snippet em "<em>" w
+<em>$1</em>
+endsnippet
+
+snippet strong "<strong>" w
+<strong>$1</strong>
+endsnippet
+
+snippet fig "<figure>"
+<figure>
+$1
+<figcaption>$2</figcaption>
+</figure>
+endsnippet
+
+snippet "h([1-6])" "h#" rw
+<h`!p snip.rv=match.group(1)`>${0:${VISUAL}}</h`!p snip.rv=match.group(1)`>
+endsnippet
+
+snippet html "HTML basic structure" b
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>${1:`!p snip.rv = snip.basename.replace('-', ' ').capitalize()`}</title>
+	</head>
+	<body>
+		${0:body}
+	</body>
+</html>
+endsnippet
+
+snippet img "<img>"
+<img src="$1" alt="$2">
+endsnippet
+
+snippet li "list item" w
+<li>${0:${VISUAL}}</li>
+endsnippet
+
+snippet ol "<ol>"
+<ol>
+	<li>$1</li>
+</ol>
+endsnippet
+
+snippet p "paragraph" w
+<p>${0:${VISUAL}}</p>
+endsnippet
+
+snippet ul "unordered list" w
+<ul>
+	${0:${VISUAL}}
+</ul>
+endsnippet
