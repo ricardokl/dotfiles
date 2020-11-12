@@ -1,5 +1,7 @@
 " Keybindings
 
+let g:mapleader=" "
+
 "{{{ Splits
 "{{{ Movendo nos splits
 nnoremap <c-h> <c-w>h
@@ -30,8 +32,10 @@ nnoremap <silent> <M-Right>    :vertical resize +2<CR>
 "}}}
 
 "{{{ FZF
-nnoremap <leader>ff :Files ~<cr>
-nnoremap <leader>f. :Files ./<cr>
+nnoremap <leader>fh :Files ~<cr>
+nmap <silent> <leader>t :BTags<cr>
+nmap <silent> <leader>ls :Buffers<cr>
+nmap <silent> <leader>bl :BLines<cr>
 "}}}
 
 "{{{ Movendo com [x
@@ -41,23 +45,30 @@ nnoremap <silent> ]b :bnext<CR>
 
 "{{{ Neoterm
 map <leader><leader> <Plug>(neoterm-repl-send)ap
-map <leader>p <Plug>(neoterm-repl-send)
+map <leader>s <Plug>(neoterm-repl-send)
+"}}}
+
+"{{{ Coc
+nnoremap <leader>cc :CocFzfList<cr>
+nnoremap <leader>cq :CocFzfList quickfix<cr>
+nnoremap <leader>o :CocFzfList outline<cr>
 "}}}
 
 " ESC no terminal como no resto
-tnoremap <esc> <c-\><c-n>
+if has("nvim")
+  au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+  au! FileType fzf tunmap <buffer> <Esc>
+endif
 
 nnoremap <silent> <c-t> :tabnew<CR>
 
 nnoremap <BS> X
 
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 nnoremap <leader>h :call Html()<cr>
-nnoremap <leader>w :w <cr>:so % <cr>
-xmap <Leader>z <Plug>(Limelight)<cr>
-nnoremap <leader>z :Limelight0.8<cr>
-nnoremap <leader>x :Limelight!<cr>
-map <c-p> <Plug>MarkdownPreviewToggle
-nmap <leader>t :TagbarToggle<CR>
+nnoremap <leader>w :w <cr>:so %<cr>
+nmap <silent> <leader>p <Plug>MarkdownPreviewToggle
 
 "{{{ Remove pageup e pagedown de todos os modos
 map <PageUp> <Nop>

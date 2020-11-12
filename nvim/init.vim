@@ -9,31 +9,25 @@ Plug 'dracula/vim'
 Plug 'haya14busa/is.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/goyo.vim'
-Plug 'machakann/vim-highlightedyank'
-Plug 'junegunn/limelight.vim'
+" Plug 'junegunn/limelight.vim'
 Plug 'mhinz/vim-startify'
 " Utilities
-Plug 'dhruvasagar/vim-table-mode'
+" Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
-Plug 'neoclide/coc-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'voldikss/vim-floaterm'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" Plug 'voldikss/vim-floaterm'
 Plug 'kassio/neoterm'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'preservim/tagbar'
-Plug 'neoclide/coc.nvim', {'branch': 'releae'}
-Plug 'iamcco/coc-vimlsp'
-Plug 'neoclide/coc-yank'
-Plug 'neoclide/coc-json'
-Plug 'neoclide/coc-html'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 " Latex
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
-Plug 'fannheyward/coc-texlab'
 " Markdown
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -42,7 +36,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Python
-Plug 'neoclide/coc-python'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "
 Plug 'ryanoasis/vim-devicons'
@@ -63,6 +56,8 @@ source ~/dotfiles/nvim/fzf.vim
 source ~/dotfiles/nvim/markdownpreview.vim
 source ~/dotfiles/nvim/indentline.vim
 source ~/dotfiles/nvim/coc.vim
+source ~/dotfiles/nvim/pymode.vim
+source ~/dotfiles/nvim/firenvim.vim
 "}}}
 
 "{{{ Funções
@@ -74,10 +69,15 @@ endfunction
 
 "{{{ Comandos
 command! Ls Buffers
-command! Tab tabnew
+command! Out CocList outline
 "}}}
 
 "{{{ Au groups
+augroup Firenvim
+    autocmd! BufEnter github.com_*.txt set filetype=markdown
+    autocmd! BufEnter mail.gmail.com_*.txt set filetype=markdown
+augroup END
+
 augroup markdown
 	autocmd FileType markdown let b:surround_{char2nr('b')} = "**\r**"
 	autocmd FileType markdown let b:surround_{char2nr('e')} = "$$\n\r\n$$"

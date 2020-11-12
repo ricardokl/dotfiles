@@ -53,6 +53,9 @@
 "/usr/bin/xte 'key Super_L' &"
   b:2 + Release
 
+"alacritty"
+    alt + y
+
 #"xterm -geom 50x20+20+20"
 #   Shift+Mod2+alt + s
 #

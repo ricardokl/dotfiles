@@ -4,7 +4,8 @@ export ZSH="/home/$USER/.oh-my-zsh"
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export PAGER=/usr/bin/most
-# export TERM=xterm
+export TERM=xterm-256color
+export PATH="$HOME/bin:$PATH"
 # }}}
 
 # {{{ Config
