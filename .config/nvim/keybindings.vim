@@ -17,6 +17,8 @@ nnoremap <C-Right> <c-w>l
 "{{{ Movendo *os* splits
 nnoremap <c-L> <c-w>L
 nnoremap <c-H> <c-w>H
+nnoremap <c-K> <c-w>K
+nnoremap <c-J> <c-w>J
 "}}}
 
 "{{{ Mudando o tamanho de splts
@@ -32,7 +34,7 @@ nnoremap <silent> <M-Right>    :vertical resize +2<CR>
 "}}}
 
 "{{{ FZF
-nnoremap <leader>fh :Files ~<cr>
+nnoremap <leader><leader> :Files ~<cr>
 nmap <silent> <leader>t :BTags<cr>
 nmap <silent> <leader>ls :Buffers<cr>
 nmap <silent> <leader>bl :BLines<cr>
@@ -41,11 +43,13 @@ nmap <silent> <leader>bl :BLines<cr>
 "{{{ Movendo com [x
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> ]n :cnext<CR>
+nnoremap <silent> [n :cprevious<CR>
 "}}}
 
 "{{{ Neoterm
-map <leader><leader> <Plug>(neoterm-repl-send)ap
-map <leader>s <Plug>(neoterm-repl-send)
+map <leader>nn <Plug>(neoterm-repl-send)ap
+map <leader>ns <Plug>(neoterm-repl-send)
 "}}}
 
 "{{{ Coc
