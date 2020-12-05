@@ -8,7 +8,7 @@ let g:startify_lists = [
 	\ ]
 let g:webdevicons_enable_startify =1
 let g:startify_bookmarks = [
-	\ { 'v': '~/dotfiles/nvim/init.vim' },
+	\ { 'v': '~/dotfiles/.config/nvim/init.vim' },
 	\ { 'z': '~/dotfiles/.zshrc' },
 	\ ]
 let g:startify_files_number = 5

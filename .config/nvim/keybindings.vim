@@ -70,6 +70,8 @@ nnoremap <BS> X
 
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+nnoremap <leader>s :Startify<cr>
+
 nnoremap <leader>h :call Html()<cr>
 nnoremap <leader>w :w <cr>:so %<cr>
 nmap <silent> <leader>p <Plug>MarkdownPreviewToggle
