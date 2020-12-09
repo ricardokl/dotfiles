@@ -15,7 +15,7 @@ ENABLE_CORRECTION="true"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(sudo python git chucknorris vi-mode fzf)
+plugins=(sudo python chucknorris vi-mode fzf)
 # }}}
 
 # {{{ Sourcing

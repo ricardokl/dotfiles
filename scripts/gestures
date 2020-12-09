@@ -1,7 +1,0 @@
-#!/bin/sh
-
-case $1 in
-  post)
-    /usr/bin/libinput-gestures-setup restart
-  ;;
-esac
