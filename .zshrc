@@ -4,8 +4,9 @@ export ZSH="/home/$USER/.oh-my-zsh"
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export PAGER=/usr/bin/most
-export TERM=xterm-256color
-export PATH="$HOME/bin:$PATH"
+# export TERM=xterm-256color
+ export TERM=alacritty
+export PATH="$HOME/dotfiles/scripts:$HOME/bin:$PATH"
 # }}}
 
 # {{{ Config
@@ -24,8 +25,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # }}}
 
-xbindkeys
-
 # {{{ Alias 1
 alias vi='nvim'
 alias commit='git commit -a'
@@ -35,7 +34,10 @@ alias ls='lsd --group-dirs first'
 alias lt='lsd --group-dirs first --tree --depth 2'
 alias a='alsamixer -c 0'
 alias pacfzf="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+alias pacsyu="sudo pacman -Syu"
 alias camera="echo 'gst-launch-1.0 souphttpsrc location=http://191.166.161.155:80/live ! jpegdec ! videoconvert ! v4l2sink device=/dev/video2' | xclip -selection clipboard"
+alias ddgr='w3m www.duckduckgo.com'
+alias keys="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 # alias s='systemctl --user restart pulseaudio'
 # alias trackpad='sudo rmmod i2c_hid && sleep 1 && sudo modprobe i2c_hid'
 # }}}

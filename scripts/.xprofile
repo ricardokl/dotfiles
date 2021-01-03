@@ -1,0 +1,2 @@
+xbindkeys &
+setxkbmap -model "" -layout br,us -variant "" -option compose:ralt,caps:swapescape &

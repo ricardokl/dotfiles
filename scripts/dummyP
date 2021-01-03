@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sudo modprobe v4l2loopback exclusive_caps=1
+
+device=$(v4l2-ctl --list-devices | awk '/Dummy/ { getline; print }')
+
+res=$(xrandr | awk '/primary/ {print $4}' | awk -F '+' '{print $1}')
+
+pos=$(xrandr | awk '/primary/ {print $4}' | awk -F '+' '{print $2}')
+
+ffmpeg -f x11grab -r 15 -s $res -i :0.0+$pos,0 -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 $device
