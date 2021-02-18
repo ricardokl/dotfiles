@@ -1,2 +1,2 @@
 xbindkeys &
-setxkbmap -model "" -layout br,us -variant "" -option compose:ralt,caps:swapescape &
+/* setxkbmap -model abnt2 -layout br.us -variant abnt2 -otpion compose:ralt,caps:swapescape */

@@ -1,1 +1,2 @@
 --external-downloader aria2c
+-o ~/Downloads/%(title)s.%(ext)s

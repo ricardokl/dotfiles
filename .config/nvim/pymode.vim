@@ -4,7 +4,7 @@ let g:pymode_trim_whitespaces = 0
 let g:pymode_options = 1
 " let g:pymode_option_max_line_lenght = 79
 " let g:pymode_options_colorcolumn = 1
-let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_minheight = 1
 let g:pymode_quickfix_maxheight = 6
 let g:pymode_preview_height = &previewheight
 " let g:pymode_indent = 1
@@ -30,7 +30,3 @@ let g:pymode_syntax_string_templates = g:pymode_syntax_all
 let g:pymode_syntax_doctests = g:pymode_syntax_all
 let g:pymode_syntax_builtin_objs = g:pymode_syntax_all
 let g:pymode_syntax_builtin_types = g:pymode_syntax_all
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4

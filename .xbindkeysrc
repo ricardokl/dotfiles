@@ -72,14 +72,15 @@
   b:2 + Release
 
 "rofi -show drun"
-  alt + space
+  alt+space
+
+"alacritty -e 'nvim'"
+  alt+v
 
 # Não funciona no gnome, que captura o mod4
 # "alacritty"
 #   mod4 + space
 
-# "/usr/bin/xdotool 'type ç'"
-#  Multi_key + c
 ##################################
 # End of xbindkeys configuration #
 ##################################

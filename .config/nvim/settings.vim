@@ -1,7 +1,7 @@
 " Settings
 syntax on
 filetype plugin indent on
-set number
+" set number
 set mouse=a
 set clipboard=unnamedplus
 "set tabstop=2 softtabstop=2 shiftwidth=2 "expandtab
@@ -28,5 +28,7 @@ set spell
 set spelllang=en_us,pt_br
 set virtualedit=block
 set completeopt=menu
+set cmdheight=1
+set laststatus=1 " Esconder o linha de status quando apenas 1 janela
 colorscheme dracula
 " let g:dracula_colorterm = 0

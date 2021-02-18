@@ -35,21 +35,21 @@ nnoremap <silent> <M-Right>    :vertical resize +2<CR>
 
 "{{{ FZF
 nnoremap <leader><leader> :Files ~<cr>
-nmap <silent> <leader>t :BTags<cr>
+nmap <silent> <leader>ft :BTags<cr>
 nmap <silent> <leader>ls :Buffers<cr>
-nmap <silent> <leader>bl :BLines<cr>
+nmap <silent> <leader>f. :Files .<cr>
 "}}}
 
 "{{{ Movendo com [x
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> ]n :cnext<CR>
-nnoremap <silent> [n :cprevious<CR>
 "}}}
 
-"{{{ Neoterm
-map <leader>nn <Plug>(neoterm-repl-send)ap
-map <leader>ns <Plug>(neoterm-repl-send)
+"{{{ Floatterm
+nnoremap <leader>r :FloatermNew ranger<cr>
+nnoremap <leader>t :FloatermToggle!<cr>
+nnoremap <leader>k :FloatermKill<cr>
+nnoremap <leader>d :FloatermNew! cht.sh --shell<cr>
 "}}}
 
 "{{{ Coc
@@ -70,9 +70,7 @@ nnoremap <BS> X
 
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-nnoremap <leader>s :Startify<cr>
-
-nnoremap <leader>h :call Html()<cr>
+" nnoremap <leader>h :call Html()<cr>
 nnoremap <leader>w :w <cr>:so %<cr>
 nmap <silent> <leader>p <Plug>MarkdownPreviewToggle
 
