@@ -35,18 +35,18 @@ scrolling:
 #     style: Bold Italic
 font:
   normal:
-    family: FantasqueSansMono Nerd Font Mono
+    family: Noto Mono
     style: Regular
   bold:
-    family: FantasqueSansMono Nerd Font Mono
+    family: Noto Mono
     style: Bold
   italic:
-    family: FantasqueSansMono Nerd Font Mono
+    family: Noto Mono
     style: Italic
   bold_italic:
-    family: FantasqueSansMono Nerd Font Mono
+    family: Noto Mono
     style: Bold Italic
-  size: 12.0
+  size: 8.0
   offset:
     x: 1
     y: 1

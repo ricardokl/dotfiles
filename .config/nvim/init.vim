@@ -22,6 +22,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'preservim/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+Plug 'vimwiki/vimwiki'
 " Latex
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
@@ -52,6 +53,7 @@ source ~/dotfiles/.config/nvim/pymode.vim
 source ~/dotfiles/.config/nvim/firenvim.vim
 source ~/dotfiles/.config/nvim/settings.vim
 source ~/dotfiles/.config/nvim/keybindings.vim
+source ~/dotfiles/.config/nvim/vimwiki.vim
 "}}}
 
 "{{{ Funções

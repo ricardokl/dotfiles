@@ -29,7 +29,7 @@ zle -N down-line-or-beggining-search
 
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-zstyle ':completion::complete:*' gain-provileges 1
+zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
 setopt AUTO_PUSHD

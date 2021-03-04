@@ -77,9 +77,12 @@
 "alacritty -e 'nvim'"
   alt+v
 
-# Não funciona no gnome, que captura o mod4
+# "firefox"
+#   ctr+space
+
 # "alacritty"
-#   mod4 + space
+#   mod4+space
+
 
 ##################################
 # End of xbindkeys configuration #
