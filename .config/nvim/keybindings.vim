@@ -37,7 +37,7 @@ nnoremap <silent> <M-Right>    :vertical resize +2<CR>
 nnoremap <leader><leader> :Files ~<cr>
 nmap <silent> <leader>ft :BTags<cr>
 nmap <silent> <leader>ls :Buffers<cr>
-nmap <silent> <leader>f. :Files .<cr>
+nmap <silent> <leader>f. :GFiles .<cr>
 "}}}
 
 "{{{ Movendo com [x

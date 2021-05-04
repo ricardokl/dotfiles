@@ -10,6 +10,7 @@ let g:webdevicons_enable_startify =1
 let g:startify_bookmarks = [
 	\ { 'v': '~/dotfiles/.config/nvim/init.vim' },
 	\ { 'z': '~/dotfiles/.zshrc' },
+	\ { 't': '~/Documents/todo.md' },
 	\ ]
 let g:startify_files_number = 5
 let g:startify_fortune_use_unicode = 1

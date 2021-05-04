@@ -22,7 +22,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'preservim/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
-" Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 " Latex
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
@@ -79,5 +79,6 @@ augroup markdown
 	autocmd FileType markdown let b:surround_{char2nr('b')} = "**\r**"
 	autocmd FileType markdown let b:surround_{char2nr('e')} = "$$\n\r\n$$"
 	autocmd FileType markdown let b:surround_{char2nr('$')} = "$\r$"
-augroup END
+	let g:markdown_fenced_languages = ['python', 'bash', 'latex']
+ augroup END
 "}}}
