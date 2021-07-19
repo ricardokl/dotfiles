@@ -6,7 +6,6 @@ call plug#begin('~/.config/nvim/plugged/')
 " Aparência
 Plug 'bling/vim-airline'
 Plug 'dracula/vim'
-Plug 'haya14busa/is.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 " Utilitários
@@ -17,12 +16,12 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'voldikss/vim-floaterm'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'vimwiki/vimwiki'
 Plug 'neomake/neomake'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 " Latex
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
@@ -31,7 +30,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Python
 Plug 'psf/black', { 'branch': 'stable' }
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'jeetsukumaran/vim-pythonsense'
 "
 Plug 'ryanoasis/vim-devicons'
@@ -40,17 +38,14 @@ call plug#end()
 
 "{{{ Sourcing
 source ~/dotfiles/.config/nvim/startscreen.vim
-source ~/dotfiles/.config/nvim/netrw.vim
 source ~/dotfiles/.config/nvim/floaterm.vim
 source ~/dotfiles/.config/nvim/vimtex.vim
 source ~/dotfiles/.config/nvim/ultisnips.vim
 source ~/dotfiles/.config/nvim/texconceal.vim
 source ~/dotfiles/.config/nvim/fzf.vim
-source ~/dotfiles/.config/nvim/markdownpreview.vim
 source ~/dotfiles/.config/nvim/indentline.vim
-source ~/dotfiles/.config/nvim/coc.vim
-source ~/dotfiles/.config/nvim/firenvim.vim
 source ~/dotfiles/.config/nvim/vimwiki.vim
+luafile ~/dotfiles/.config/nvim/treesitter.lua
 source ~/dotfiles/.config/nvim/settings.vim
 source ~/dotfiles/.config/nvim/keybindings.vim
 "}}}
@@ -92,3 +87,33 @@ augroup python
 	autocmd Filetype python nnoremap <leader>fl :w !flake8
 augroup END
 "}}}
+
+lua << EOF
+require'lspconfig'.jedi_language_server.setup{}
+require'lspconfig'.texlab.setup{}
+require'lspconfig'.vimls.setup{}
+
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  resolve_timeout = 800;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    ultisnips = true;
+    emoji = true;
+  };
+}
+EOF
