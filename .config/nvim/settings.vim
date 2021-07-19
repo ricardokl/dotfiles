@@ -30,5 +30,6 @@ set virtualedit=block
 set completeopt=menu
 set cmdheight=1
 set laststatus=1 " Esconder o linha de status quando apenas 1 janela
+set fillchars+=eob:\ 
 colorscheme dracula
 " let g:dracula_colorterm = 0
