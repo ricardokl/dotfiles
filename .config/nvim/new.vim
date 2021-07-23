@@ -22,6 +22,7 @@ Plug 'neomake/neomake'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Latex
 Plug 'lervag/vimtex'
 " Git
@@ -43,7 +44,6 @@ source ~/dotfiles/.config/nvim/ultisnips.vim
 source ~/dotfiles/.config/nvim/indentline.vim
 source ~/dotfiles/.config/nvim/vimwiki.vim
 luafile ~/dotfiles/.config/nvim/treesitter.lua
-source ~/dotfiles/.config/nvim/keybindings.vim
 "}}}
 
 "{{{ Funções
@@ -64,7 +64,7 @@ command! T sp | terminal
 
 "{{{ Au groups
 au TextYankPost * silent! lua vim.highlight.on_yank()
-
+au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
 au filetype vimwiki silent! iunmap <buffer> <Tab>
 
 augroup markdown
@@ -76,10 +76,12 @@ augroup python
 augroup END
 "}}}
 
-"{{{ Configuaração
+"{{{ LUA
 lua << EOF
+--{{{ Configuração
 vim.cmd('filetype indent plugin on')
 vim.cmd('syntax on')
+vim.cmd('colorscheme dracula')
 vim.opt.autoindent     = true                              -- maintain indent of current line
 vim.opt.backspace      = 'indent,start,eol'                -- allow unrestricted backspacing in insert mode
 vim.opt.belloff        = 'all'                             -- never ring the bell for any reason
@@ -131,15 +133,15 @@ vim.opt.updatetime     = 2000                             -- CursorHold interval
 vim.opt.virtualedit    = 'block'                          -- Cursor anda por colunas virtuais
 vim.opt.visualbell     = true                             -- stop annoying beeping for non-error errors
 vim.opt.whichwrap      = 'b,h,l,s,<,>,[,],~'              -- Permite passar de linhas com estes comandos
-EOF
-"}}}
+--}}}
 
-"{{{ Lua Config
-lua << EOF
+--{{{ LSP
 require'lspconfig'.jedi_language_server.setup{}
 require'lspconfig'.texlab.setup{}
 require'lspconfig'.vimls.setup{}
+--}}}
 
+--{{{ Compe config
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
@@ -163,5 +165,99 @@ require'compe'.setup {
     emoji = true;
   };
 }
+--}}}
+
+--{{{ Tree-sitter
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = true,
+      -- Automatically jump forward to textobj, similar to targets.vim 
+      lookahead = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@call.outer",
+        ["ic"] = "@call.inner",
+        },
+      },
+    swap = {
+       enable = true,
+       swap_next = {
+         ["<leader>a"] = "@parameter.inner",
+       },
+       swap_previous = {
+        ["<leader>A"] = "@parameter.inner",
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]c"] = "@call.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]C"] = "@call.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[c"] = "@call.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[C"] = "@call.outer",
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      border = 'none',
+      peek_definition_code = {
+        ["df"] = "@function.outer",
+        ["dF"] = "@class.outer",
+      },
+    },
+  }
+}
+--}}}
+
+--{{{ Keymaps
+vim.g.mapleader = ' '
+vim.api.nvim_set_keymap('n', '<leader>m', ':Neomake<cr>', { silent = true})
+--{{{ Movendo nos splits
+vim.api.nvim_set_keymap('n', '<c-h>', '<c-w>h', { noremap = true})
+vim.api.nvim_set_keymap('n', '<c-j>', '<c-w>j', { noremap = true})
+vim.api.nvim_set_keymap('n', '<c-k>', '<c-w>k', { noremap = true})
+vim.api.nvim_set_keymap('n', '<c-l>', '<c-w>l', { noremap = true})
+vim.api.nvim_set_keymap('n', '<c-Left>', '<c-w>h',{ noremap = true})
+vim.api.nvim_set_keymap('n', '<c-Down>', '<c-w>j',{ noremap = true})
+vim.api.nvim_set_keymap('n', '<c-Up>', '<c-w>k',{ noremap = true})
+vim.api.nvim_set_keymap('n', '<c-Right>', '<c-w>l',{ noremap = true})
+--}}}
+
+--{{{ Telescope
+vim.api.nvim_set_keymap('n', '<Space>ff', ':Telescope find_files<cr>',{})
+vim.api.nvim_set_keymap('n', '<Space>fg', ':Telescope git_files<cr>',{})
+vim.api.nvim_set_keymap('n', '<Space>fb', ':Telescope file_browser<cr>',{})
+vim.api.nvim_set_keymap('n', '<Space>bb', ':Telescope buffers<cr>',{})
+--}}}
+
+--{{{ Movendo entre bufers
+vim.api.nvim_set_keymap('n', '[b', ':bprevious<cr>',{ silent = true })
+vim.api.nvim_set_keymap('n', ']b', ':bnext<cr>',{ silent = true })
+--}}}
+
+--{{{ Floaterm
+vim.api.nvim_set_keymap('n', '<leader>tt', ':FloatermToggle!<cr>',{})
+vim.api.nvim_set_keymap('n', '<leader>tk', ':FloatermKill<cr>',{})
+vim.api.nvim_set_keymap('n', '<leader>tc', ':FloatermNew! cht.sh --shell<cr>',{})
+vim.api.nvim_set_keymap('n', '<leader>tm', ':FloatermNew! cht.sh --shell makdown<cr>',{})
+vim.api.nvim_set_keymap('n', '<leader>tp', ':FloatermNew! cht.sh --shell python<cr>',{})
+vim.api.nvim_set_keymap('n', '<leader>tl', ':FloatermNew! cht.sh --shell latex<cr>',{})
+--}}}
+
+--}}}
 EOF
 "}}}
