@@ -1,5 +1,3 @@
-set nocompatible
-
 "{{{ Plugins
 call plug#begin('~/.config/nvim/plugged/')
 "
@@ -30,7 +28,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Python
 Plug 'psf/black', { 'branch': 'stable' }
-Plug 'jeetsukumaran/vim-pythonsense'
 "
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -41,7 +38,6 @@ source ~/dotfiles/.config/nvim/startscreen.vim
 source ~/dotfiles/.config/nvim/floaterm.vim
 source ~/dotfiles/.config/nvim/vimtex.vim
 source ~/dotfiles/.config/nvim/ultisnips.vim
-source ~/dotfiles/.config/nvim/indentline.vim
 source ~/dotfiles/.config/nvim/vimwiki.vim
 luafile ~/dotfiles/.config/nvim/treesitter.lua
 "}}}
@@ -63,13 +59,9 @@ command! T sp | terminal
 "}}}
 
 "{{{ Au groups
-au TextYankPost * silent! lua vim.highlight.on_yank()
 au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+au TextYankPost * silent! lua vim.highlight.on_yank()
 au filetype vimwiki silent! iunmap <buffer> <Tab>
-
-augroup markdown
-	autocmd Filetype markdown nnoremap <leader>cs :FloatermNew cht.sh --shell markdown<cr>
- augroup END
 
 augroup python
 	autocmd Filetype python nnoremap <leader>cs :FloatermNew cht.sh --shell python<cr>
@@ -169,6 +161,19 @@ require'compe'.setup {
 
 --{{{ Tree-sitter
 require'nvim-treesitter.configs'.setup {
+  highlight = { enable = true },
+  indent = { enable = true },
+  ensure_installed = { "python", "r", "lua", "latex", "bibtex", "bash", "yaml", "json", "html", "css"},
+  indent = { enable = true },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "gnm",
+      node_decremental = "gnd",
+      scope_incremental = "gsm"
+      },
+    },
   textobjects = {
     select = {
       enable = true,
@@ -180,6 +185,8 @@ require'nvim-treesitter.configs'.setup {
         ["if"] = "@function.inner",
         ["ac"] = "@call.outer",
         ["ic"] = "@call.inner",
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
         },
       },
     swap = {
@@ -188,7 +195,7 @@ require'nvim-treesitter.configs'.setup {
          ["<leader>a"] = "@parameter.inner",
        },
        swap_previous = {
-        ["<leader>A"] = "@parameter.inner",
+         ["<leader>A"] = "@parameter.inner",
       },
     },
     move = {
@@ -197,30 +204,40 @@ require'nvim-treesitter.configs'.setup {
       goto_next_start = {
         ["]m"] = "@function.outer",
         ["]c"] = "@call.outer",
+        ["]a"] = "@parameter.outer",
       },
       goto_next_end = {
         ["]M"] = "@function.outer",
         ["]C"] = "@call.outer",
+        ["]A"] = "@parameter.outer",
       },
       goto_previous_start = {
         ["[m"] = "@function.outer",
         ["[c"] = "@call.outer",
+        ["[a"] = "@parameter.outer",
       },
       goto_previous_end = {
         ["[M"] = "@function.outer",
         ["[C"] = "@call.outer",
-      },
-    },
-    lsp_interop = {
-      enable = true,
-      border = 'none',
-      peek_definition_code = {
-        ["df"] = "@function.outer",
-        ["dF"] = "@class.outer",
+        ["[A"] = "@parameter.outer",
       },
     },
   }
 }
+--}}}
+
+--{{{ Telescope
+          require'telescope'.setup {
+            defaults = {
+              border = {},
+              borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+              color_devicons = true,
+              }
+            }
+--}}}
+
+--{{{ IndentLine
+vim.g.indentLine_char = '▏'
 --}}}
 
 --{{{ Keymaps
