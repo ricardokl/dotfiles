@@ -9,6 +9,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_C_COMMAND='fd --trype d ~ --hidden'
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 export FZF_CTRL_C_OPTS="--preview 'tree -C {} | head -50'"
+export PYTHONSTARTUP="$(python -m jedi repl)"
+
 #}}}
 
 # {{{ Options section

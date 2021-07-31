@@ -2,6 +2,8 @@
 
 let g:mapleader=" "
 
+nnoremap <silent> <leader>m :Neomake<cr>
+
 "{{{ Splits
 "{{{ Movendo nos splits
 nnoremap <c-h> <c-w>h
@@ -46,16 +48,16 @@ nnoremap <silent> ]b :bnext<CR>
 "}}}
 
 "{{{ Floatterm
-nnoremap <leader>r :FloatermNew ranger<cr>
-nnoremap <leader>t :FloatermToggle!<cr>
-nnoremap <leader>k :FloatermKill<cr>
-nnoremap <leader>d :FloatermNew! cht.sh --shell<cr>
+nnoremap <leader>tr :FloatermNew ranger<cr>
+nnoremap <leader>tt :FloatermToggle!<cr>
+nnoremap <leader>tk :FloatermKill<cr>
+nnoremap <leader>tc :FloatermNew! cht.sh --shell<cr>
 "}}}
 
 "{{{ Coc
 nnoremap <leader>cc :CocFzfList<cr>
 nnoremap <leader>cq :CocFzfList quickfix<cr>
-nnoremap <leader>o :CocFzfList outline<cr>
+nnoremap <leader>co :CocFzfList outline<cr>
 "}}}
 
 " ESC no terminal como no resto
@@ -70,11 +72,32 @@ nnoremap <BS> X
 
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" nnoremap <leader>h :call Html()<cr>
-nnoremap <leader>w :w <cr>:so %<cr>
 nmap <silent> <leader>p <Plug>MarkdownPreviewToggle
 
 "{{{ Remove pageup e pagedown de todos os modos
 map <PageUp> <Nop>
 map <PageDown> <Nop>
+"}}}
+
+"{{{ Abreviações
+iabbrev => ⇒
+iabbrev <= ⇐
+iabbrev -> →
+iabbrev <- ←
+iabbrev >> »
+iabbrev << «
+iabbrev *x ×
+iabbrev *. ⋅
+iabbrev -: ÷
+iabbrev :- ÷
+iabbrev D* Δ
+iabbrev *D Δ
+iabbrev <-> ↔
+iabbrev <=> ⇔
+iabbrev +- ±
+iabbrev -+ ∓
+" <ctrl-k>OK ⇒ ✓
+" <ctrl-k>XX ⇒ ✗
+" <ctrl-k>2S ⇒ ²
+" <ctrl-k>2s ⇒ ₂
 "}}}

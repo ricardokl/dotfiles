@@ -32,3 +32,4 @@ set cmdheight=1
 set laststatus=1 " Esconder o linha de status quando apenas 1 janela
 colorscheme dracula
 " let g:dracula_colorterm = 0
+let g:ruby_host_prog="/home/ricardo/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-host"
