@@ -1,5 +1,5 @@
 " Settings
-syntax on
+" syntax on
 filetype plugin indent on
 " set number
 set mouse=a
@@ -27,9 +27,10 @@ set noemoji
 set spell
 set spelllang=en_us,pt_br
 set virtualedit=block
-set completeopt=menu
+set completeopt=menuone,noselect
 set cmdheight=1
 set laststatus=1 " Esconder o linha de status quando apenas 1 janela
+set fillchars+=eob:\ 
 colorscheme dracula
 " let g:dracula_colorterm = 0
 let g:ruby_host_prog="/home/ricardo/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-host"

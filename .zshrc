@@ -3,7 +3,7 @@ export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export PAGER=/usr/bin/most
 export TERM=alacritty
-export PATH="$HOME/dotfiles/scripts:$HOME/bin:$PATH"
+export PATH="$HOME/dotfiles/scripts:$HOME/bin:/home/ricardo/.local/share/gem/ruby/3.0.0/bin:$PATH"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*" ~'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_C_COMMAND='fd --trype d ~ --hidden'
@@ -80,7 +80,7 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
-alias vi='nvim'
+alias vi='nvim -u /home/ricardo/dotfiles/.config/nvim/new.vim'
 alias commit='git commit -a'
 alias push='git push'
 alias l='lsd --group-dirs first -Al'
