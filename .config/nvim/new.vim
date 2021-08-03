@@ -24,7 +24,6 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Latex
 Plug 'lervag/vimtex'
 " Git
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Python
 Plug 'psf/black', { 'branch': 'stable' }
@@ -35,27 +34,9 @@ call plug#end()
 
 "{{{ Sourcing
 source ~/dotfiles/.config/nvim/startscreen.vim
-source ~/dotfiles/.config/nvim/floaterm.vim
 source ~/dotfiles/.config/nvim/vimtex.vim
 source ~/dotfiles/.config/nvim/ultisnips.vim
 source ~/dotfiles/.config/nvim/vimwiki.vim
-luafile ~/dotfiles/.config/nvim/treesitter.lua
-"}}}
-
-"{{{ Funções
-function! Html()
-	let texto = execute('w ! pandoc -s -t html | xclip -t text/html -selection clipboard')
-	return texto
-endfunction
-"}}}
-
-"{{{ Comandos
-command! LS Buffers
-command! W w
-command! Wq wq
-command! Nome echo expand('%:p')
-command! VT vsp | terminal
-command! T sp | terminal
 "}}}
 
 "{{{ Au groups
@@ -77,6 +58,7 @@ vim.cmd('colorscheme dracula')
 vim.opt.autoindent     = true                              -- maintain indent of current line
 vim.opt.backspace      = 'indent,start,eol'                -- allow unrestricted backspacing in insert mode
 vim.opt.belloff        = 'all'                             -- never ring the bell for any reason
+vim.opt.clipboard      = 'unnamedplus'                     -- Sincronizar com sistema
 vim.opt.completeopt    = 'menuone'                         -- show menu even if there is only one candidate
 vim.opt.completeopt    = vim.opt.completeopt + 'noselect'  -- don't automatically select canditate
 vim.opt.cursorline     = true                              -- highlight current line
@@ -104,6 +86,7 @@ vim.opt.listchars      = {
   trail                = '•',                              -- Espaços em branco no final da linha
 }
 vim.opt.modelines      = 5                                 -- Quantas linhas procurar por modeline
+vim.opt.mouse          = 'a'                               -- Mouse
 vim.opt.scrolloff      = 10                                -- Deixar 10 linhas no topo e em baixo
 vim.opt.shell          = 'zsh'                             -- shell to use for `!`, `:!`, `system()` etc.
 vim.opt.shiftround     = false                             -- don't always indent by multiple of shiftwidth
@@ -129,7 +112,9 @@ vim.opt.whichwrap      = 'b,h,l,s,<,>,[,],~'              -- Permite passar de l
 
 --{{{ LSP
 require'lspconfig'.jedi_language_server.setup{}
-require'lspconfig'.texlab.setup{}
+require'lspconfig'.texlab.setup{
+  chktex = { onOpenAndSave = true }
+}
 require'lspconfig'.vimls.setup{}
 --}}}
 
@@ -147,12 +132,20 @@ require'compe'.setup {
   max_abbr_width = 100;
   max_kind_width = 100;
   max_menu_width = 100;
-  documentation = true;
+  documentation = {
+    -- border = { '', '' ,'', ' ', '', '', '', ' ' },
+    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+    max_width = 120,
+    min_width = 60,
+    max_height = math.floor(vim.o.lines * 0.3),
+    min_height = 1,
+  };
   source = {
     path = true;
     buffer = true;
     calc = true;
     nvim_lsp = true;
+    nvim_lua = true;
     ultisnips = true;
     emoji = true;
   };
@@ -177,7 +170,7 @@ require'nvim-treesitter.configs'.setup {
   textobjects = {
     select = {
       enable = true,
-      -- Automatically jump forward to textobj, similar to targets.vim 
+      -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
@@ -204,22 +197,22 @@ require'nvim-treesitter.configs'.setup {
       goto_next_start = {
         ["]m"] = "@function.outer",
         ["]c"] = "@call.outer",
-        ["]a"] = "@parameter.outer",
+        ["]a"] = "@parameter.inner",
       },
       goto_next_end = {
         ["]M"] = "@function.outer",
         ["]C"] = "@call.outer",
-        ["]A"] = "@parameter.outer",
+        ["]A"] = "@parameter.inner",
       },
       goto_previous_start = {
         ["[m"] = "@function.outer",
         ["[c"] = "@call.outer",
-        ["[a"] = "@parameter.outer",
+        ["[a"] = "@parameter.inner",
       },
       goto_previous_end = {
         ["[M"] = "@function.outer",
         ["[C"] = "@call.outer",
-        ["[A"] = "@parameter.outer",
+        ["[A"] = "@parameter.inner",
       },
     },
   }
@@ -229,8 +222,6 @@ require'nvim-treesitter.configs'.setup {
 --{{{ Telescope
           require'telescope'.setup {
             defaults = {
-              border = {},
-              borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
               color_devicons = true,
               }
             }
@@ -238,6 +229,14 @@ require'nvim-treesitter.configs'.setup {
 
 --{{{ IndentLine
 vim.g.indentLine_char = '▏'
+--}}}
+
+--{{{ Floaterm
+vim.g.floaterm_gitcommit  = 'floaterm'
+vim.g.floaterm_autoinsert = 1
+vim.g.floaterm_width      = 0.8
+vim.g.floaterm_height     = 0.8
+vim.g.floaterm_wintitle   = 0
 --}}}
 
 --{{{ Keymaps
@@ -273,6 +272,15 @@ vim.api.nvim_set_keymap('n', '<leader>tc', ':FloatermNew! cht.sh --shell<cr>',{}
 vim.api.nvim_set_keymap('n', '<leader>tm', ':FloatermNew! cht.sh --shell makdown<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tp', ':FloatermNew! cht.sh --shell python<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tl', ':FloatermNew! cht.sh --shell latex<cr>',{})
+--}}}
+
+--{{{ LSP
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 --}}}
 
 --}}}
