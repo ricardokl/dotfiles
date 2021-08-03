@@ -91,4 +91,7 @@ augroup python
 	autocmd Filetype python nnoremap <leader>cs :FloatermNew cht.sh --shell python<cr>
 	autocmd Filetype python nnoremap <leader>fl :w !flake8
 augroup END
+<<<<<<< HEAD
+=======
 "}}}
+>>>>>>> 4151199efc2fea3860456123a2e09564eed5621c

@@ -72,6 +72,11 @@ nnoremap <BS> X
 
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+<<<<<<< HEAD
+nmap <silent> <leader>p <Plug>MarkdownPreviewToggle
+
+=======
+>>>>>>> 4151199efc2fea3860456123a2e09564eed5621c
 "{{{ Remove pageup e pagedown de todos os modos
 map <PageUp> <Nop>
 map <PageDown> <Nop>
