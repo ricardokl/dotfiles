@@ -80,7 +80,7 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
-alias vi='nvim -u /home/ricardo/dotfiles/.config/nvim/new.vim'
+alias vi='nvim'
 alias commit='git commit -a'
 alias push='git push'
 alias l='lsd --group-dirs first -Al'

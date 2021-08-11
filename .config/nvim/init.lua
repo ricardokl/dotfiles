@@ -17,27 +17,20 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'voldikss/vim-floaterm'
 Plug 'vimwiki/vimwiki'
-Plug 'neomake/neomake'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-Plug('nvim-treesitter/nvim-treesitter', {['do']= 'TSUpdate'})
+Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 -- Latex
 Plug 'lervag/vimtex'
 -- Git
 Plug 'airblade/vim-gitgutter'
--- Python
-Plug('psf/black', {['branch']= 'stable'})
 --
 Plug 'ryanoasis/vim-devicons'
 vim.call('plug#end')
 --}}}
 
 --{{{ Sourcing
-vim.cmd('source /home/ricardo/dotfiles/.config/nvim/startscreen.vim')
-vim.cmd('source /home/ricardo/dotfiles/.config/nvim/vimtex.vim')
-vim.cmd('source /home/ricardo/dotfiles/.config/nvim/ultisnips.vim')
-vim.cmd('source /home/ricardo/dotfiles/.config/nvim/vimwiki.vim')
 vim.cmd('source /home/ricardo/dotfiles/.config/nvim/augroups.vim')
 --}}}
 
@@ -101,35 +94,52 @@ vim.opt.whichwrap      = 'b,h,l,s,<,>,[,],~'              -- Permite passar de l
 --}}}
 
 --{{{ LSP
-require'lspconfig'.jedi_language_server.setup{}
-require'lspconfig'.texlab.setup{
+local nvim_lsp = require('lspconfig')
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Mappings
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'pyright', 'vimls' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+  }
+end
+
+nvim_lsp['texlab'].setup{
+  on_attach = on_attach,
   chktex = { onOpenAndSave = true }
 }
-require'lspconfig'.vimls.setup{}
---}}}
+-- }}}
 
---{{{ Compe config
+--{{{ Compe
 require'compe'.setup {
---  enabled = true;
---  autocomplete = true;
---  debug = false;
---  min_length = 1;
---  preselect = 'enable';
---  throttle_time = 80;
---  source_timeout = 200;
---  resolve_timeout = 800;
---  incomplete_delay = 400;
---  max_abbr_width = 100;
---  max_kind_width = 100;
---  max_menu_width = 100;
-  documentation = {
-    -- border = { '', '' ,'', ' ', '', '', '', ' ' },
-    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-    max_width = 120,
-    min_width = 60,
-    max_height = math.floor(vim.o.lines * 0.3),
-    min_height = 1,
-  };
+  documentation = true;
   source = {
     path = true;
     buffer = true;
@@ -210,11 +220,11 @@ require'nvim-treesitter.configs'.setup {
 --}}}
 
 --{{{ Telescope
-          require'telescope'.setup {
-            defaults = {
-              color_devicons = true,
-              }
-            }
+require'telescope'.setup {
+  defaults = {
+    color_devicons = true,
+    }
+  }
 --}}}
 
 --{{{ IndentLine
@@ -229,9 +239,64 @@ vim.g.floaterm_height     = 0.8
 vim.g.floaterm_wintitle   = 0
 --}}}
 
+--{{{ Vimtex
+vim.g.vimtex_enabled                  = 1
+vim.g.vimtex_compiler_enabled         = 1
+vim.g.vimte_compiler_method           = 'latexmk'
+vim.g.vimtex_view_method              = 'zathura'
+vim.g.vimtex_quickfix_enabled         = 1
+vim.g.vimtex_quickfix_mode            = 0
+vim.g.vimtex_quickfix_open_on_warning = 0
+vim.g.vimtex_complete_enabled         = 0
+vim.g.vimtex_compiler_latexmk         = {
+  executable                      = 'latexmk',
+  callback                        = 1,
+  continuous                      = 1,
+  options                         = {
+    '-pdf',
+    '-verbose',
+    '-file-line-error',
+    '-synctex = 1',
+    '-interaction = nonstopmode'
+  }
+}
+--}}}
+
+--{{{ Vimwiki
+vim.g.vimwiki_list       = {{
+  path               = '~/mywiki',
+  syntax             = 'markdown',
+  ext                = '.md'
+}}
+vim.g.vimwiki_global_ext = 0
+--}}}
+
+--{{{ Ultisnips
+vim.g.UltisnipsExpandTrigger       = '<tab>'
+vim.g.UltisnipsJumpForwardTrigger  = '<tab>'
+vim.g.UltisnipsJumpBackwardTrigger = '<s-tab>'
+--}}}
+
+--{{{ Starttify
+vim.g.startify_session_dir = '~/.config/nvim/session'
+vim.g.startify_lists = {
+  { type = 'bookmarks', header = {'Bookmarks'}},
+  { type = 'files', header = {'Recentes'}},
+  { type = 'sessions', header = {'Sessions'}}
+}
+vim.g.webdevicons_enable_startify = 1
+vim.g.startify_bookmarks = {
+  { v = '~/dotfiles/.config/nvim/init.lua' },
+  { z = '~/dotfiles/.zshrc' },
+  { t = '~/Documents/todo.md' }
+}
+vim.g.startify_files_number = 5
+vim.g.startify_fortune_use_unicode = 1
+vim.g.startify_padding_left = 5
+--}}}
+
 --{{{ Keymaps
 vim.g.mapleader = ' '
-vim.api.nvim_set_keymap('n', '<leader>m', ':Neomake<cr>', { silent = true})
 --{{{ Movendo nos splits
 vim.api.nvim_set_keymap('n', '<c-h>', '<c-w>h', { noremap = true})
 vim.api.nvim_set_keymap('n', '<c-j>', '<c-w>j', { noremap = true})
@@ -245,8 +310,9 @@ vim.api.nvim_set_keymap('n', '<c-Right>', '<c-w>l',{ noremap = true})
 
 --{{{ Telescope
 vim.api.nvim_set_keymap('n', '<Space>ff', ':Telescope find_files<cr>',{})
-vim.api.nvim_set_keymap('n', '<Space>fg', ':Telescope git_files<cr>',{})
+vim.api.nvim_set_keymap('n', '<Space>fd', ':Telescope fd<cr>',{})
 vim.api.nvim_set_keymap('n', '<Space>fb', ':Telescope file_browser<cr>',{})
+vim.api.nvim_set_keymap('n', '<Space>fl', ':Telescope loclist<cr>',{})
 vim.api.nvim_set_keymap('n', '<Space>bb', ':Telescope buffers<cr>',{})
 --}}}
 
@@ -263,14 +329,4 @@ vim.api.nvim_set_keymap('n', '<leader>tm', ':FloatermNew! cht.sh --shell makdown
 vim.api.nvim_set_keymap('n', '<leader>tp', ':FloatermNew! cht.sh --shell python<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tl', ':FloatermNew! cht.sh --shell latex<cr>',{})
 --}}}
-
---{{{ LSP
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
---}}}
-
 --}}}
