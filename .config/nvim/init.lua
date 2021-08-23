@@ -30,6 +30,7 @@ Plug 'ryanoasis/vim-devicons'
 vim.call('plug#end')
 --}}}
 
+
 --{{{ Sourcing
 vim.cmd('source /home/ricardo/dotfiles/.config/nvim/augroups.vim')
 --}}}
