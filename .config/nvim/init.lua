@@ -18,7 +18,8 @@ Plug 'tpope/vim-surround'
 Plug 'voldikss/vim-floaterm'
 Plug 'vimwiki/vimwiki'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+-- Plug 'hrsh7th/nvim-compe'
+Plug('ms-jpq/coq_nvim', {['branch'] = 'coq'})
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 -- Latex
@@ -95,6 +96,7 @@ vim.opt.whichwrap      = 'b,h,l,s,<,>,[,],~'              -- Permite passar de l
 
 --{{{ LSP
 local nvim_lsp = require('lspconfig')
+local coq = require('coq')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -128,6 +130,7 @@ local servers = { 'pyright', 'vimls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
+    coq.lsp_ensure_capabilities(),
   }
 end
 
@@ -137,20 +140,20 @@ nvim_lsp['texlab'].setup{
 }
 -- }}}
 
---{{{ Compe
-require'compe'.setup {
-  documentation = true;
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    ultisnips = true;
-    emoji = true;
-  };
-}
---}}}
+----{{{ Compe
+--require'compe'.setup {
+--  documentation = true;
+--  source = {
+--    path = true;
+--    buffer = true;
+--    calc = true;
+--    nvim_lsp = true;
+--    nvim_lua = true;
+--    ultisnips = true;
+--    emoji = true;
+--  };
+--}
+----}}}
 
 --{{{ Tree-sitter
 require'nvim-treesitter.configs'.setup {
