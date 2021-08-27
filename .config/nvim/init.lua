@@ -331,5 +331,6 @@ vim.api.nvim_set_keymap('n', '<leader>tc', ':FloatermNew! cht.sh --shell<cr>',{}
 vim.api.nvim_set_keymap('n', '<leader>tm', ':FloatermNew! cht.sh --shell makdown<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tp', ':FloatermNew! cht.sh --shell python<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tl', ':FloatermNew! cht.sh --shell latex<cr>',{})
+vim.api.nvim_set_keymap('n', '<leader>rr', ':FloatermNew --disposable python %<cr>',{})
 --}}}
 --}}}
