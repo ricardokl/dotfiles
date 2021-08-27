@@ -102,4 +102,4 @@ set query_command = "/usr/bin/lbdbq"
 
 ###############
 # Colors
-source ~/dotfiles/dracula.muttrc
+source ./dracula.muttrc
