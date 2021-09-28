@@ -126,7 +126,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'vimls' }
+local servers = { 'pyright', 'vimls', 'rls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -142,7 +142,6 @@ nvim_lsp['texlab'].setup{
 
 ----{{{ Compe
 --require'compe'.setup {
---  documentation = true;
 --  source = {
 --    path = true;
 --    buffer = true;
@@ -159,7 +158,7 @@ nvim_lsp['texlab'].setup{
 require'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
   indent = { enable = true },
-  ensure_installed = { "python", "r", "lua", "latex", "bibtex", "bash", "yaml", "json", "html", "css"},
+  ensure_installed = { "python", "r", "lua", "latex", "bibtex", "bash", "yaml", "json", "html", "css","rust"},
   indent = { enable = true },
   incremental_selection = {
     enable = true,
@@ -331,6 +330,5 @@ vim.api.nvim_set_keymap('n', '<leader>tc', ':FloatermNew! cht.sh --shell<cr>',{}
 vim.api.nvim_set_keymap('n', '<leader>tm', ':FloatermNew! cht.sh --shell makdown<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tp', ':FloatermNew! cht.sh --shell python<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tl', ':FloatermNew! cht.sh --shell latex<cr>',{})
-vim.api.nvim_set_keymap('n', '<leader>rr', ':FloatermNew --disposable python %<cr>',{})
 --}}}
 --}}}
