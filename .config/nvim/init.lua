@@ -20,6 +20,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'neovim/nvim-lspconfig'
 -- Plug 'hrsh7th/nvim-compe'
 Plug('ms-jpq/coq_nvim', {['branch'] = 'coq'})
+Plug('ms-jpq/coq.artifacts', {['branch'] = 'artifacts'})
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 -- Latex
@@ -126,7 +127,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'vimls', 'rls' }
+local servers = { 'pyright', 'vimls', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
