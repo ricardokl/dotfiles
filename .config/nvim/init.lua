@@ -32,10 +32,6 @@ Plug 'ryanoasis/vim-devicons'
 vim.call('plug#end')
 --}}}
 
---{{{ Sourcing
-vim.cmd('source /home/ricardo/dotfiles/.config/nvim/augroups.vim')
---}}}
-
 --{{{ Configuração
 vim.cmd('filetype indent plugin on')
 vim.cmd('syntax on')
@@ -333,3 +329,10 @@ vim.api.nvim_set_keymap('n', '<leader>tp', ':FloatermNew! cht.sh --shell python<
 vim.api.nvim_set_keymap('n', '<leader>tl', ':FloatermNew! cht.sh --shell latex<cr>',{})
 --}}}
 --}}}
+--
+--
+vim.cmd('autocmd! TextYankPost * silent! lua vim.highlight.on_yank()')
+vim.cmd('autocmd! TermOpen * lua require("term")')
+vim.cmd('autocmd! Filetype vimwiki lua require("vimwiki")')
+vim.cmd('autocmd! Filetype python lua require("python")')
+vim.cmd('autocmd! Filetype rust lua require("rust")')
