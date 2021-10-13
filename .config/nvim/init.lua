@@ -332,7 +332,7 @@ vim.api.nvim_set_keymap('n', '<leader>tl', ':FloatermNew! cht.sh --shell latex<c
 --
 --
 vim.cmd('autocmd! TextYankPost * silent! lua vim.highlight.on_yank()')
-vim.cmd('autocmd! TermOpen * lua require("term")')
-vim.cmd('autocmd! Filetype vimwiki lua require("vimwiki")')
-vim.cmd('autocmd! Filetype python lua require("python")')
-vim.cmd('autocmd! Filetype rust lua require("rust")')
+vim.cmd('autocmd! TermOpen * tnoremap <buffer> <Esc> <c-\\><c-n>')
+vim.cmd('autocmd! Filetype vimwiki silent! iunmap <buffer> <Tab>')
+vim.cmd('autocmd! Filetype python nnoremap <buffer> <leader><leader> :FloatermNew --disposable python %<cr>')
+vim.cmd('autocmd! Filetype rust nnoremap <buffer> <leader><leader> :FloatermNew --disposable cargo run<cr>')
