@@ -324,7 +324,6 @@ vim.api.nvim_set_keymap('n', ']b', ':bnext<cr>',{ silent = true })
 vim.api.nvim_set_keymap('n', '<leader>tt', ':FloatermToggle!<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tk', ':FloatermKill<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tc', ':FloatermNew! cht.sh --shell<cr>',{})
-vim.api.nvim_set_keymap('n', '<leader>tm', ':FloatermNew! cht.sh --shell makdown<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tp', ':FloatermNew! cht.sh --shell python<cr>',{})
 vim.api.nvim_set_keymap('n', '<leader>tl', ':FloatermNew! cht.sh --shell latex<cr>',{})
 --}}}

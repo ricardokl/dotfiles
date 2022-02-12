@@ -4,8 +4,8 @@ env:
 # {{{ Window
 window:
   dimensions:
-    columns: 85
-    lines: 30
+    columns: 100
+    lines: 40
   padding:
     x: 6
     y: 6
@@ -46,7 +46,7 @@ font:
   bold_italic:
     family: Noto Mono
     style: Bold Italic
-  size: 8.0
+  size: 10.0
   offset:
     x: 1
     y: 1
@@ -163,7 +163,8 @@ colors:
 #  indexed_colors: []
 ##}}}
 
-background_opacity: 0.98
+# background_opacity: 0.98
+window.opacity: 0.98
 
 window.dynamic_title: true
 
