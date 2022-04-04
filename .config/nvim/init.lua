@@ -1,35 +1,34 @@
 --{{{ Plugins
-local Plug = vim.fn['plug#']
-vim.call('plug#begin','~/.config/nvim/plugged/')
---
+require "paq" {
+    "savq/paq-nvim";                  -- Let Paq manage itself
 -- Aparência
-Plug 'dracula/vim'
-Plug 'bling/vim-airline'
-Plug 'Yggdroot/indentLine'
-Plug 'mhinz/vim-startify'
+    "dracula/vim";
+    "bling/vim-airline";
+    "Yggdroot/indentLine";
+    "mhinz/vim-startify";
 -- Utilitários
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'SirVer/ultisnips'
-Plug 'tpope/vim-commentary'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'voldikss/vim-floaterm'
-Plug 'vimwiki/vimwiki'
-Plug 'neovim/nvim-lspconfig'
+    -- "nvim-lua/popup.nvim";
+    "nvim-lua/plenary.nvim";
+    "nvim-telescope/telescope.nvim";
+    -- "SirVer/ultisnips";
+    "tpope/vim-commentary";
+    "jiangmiao/auto-pairs";
+    "tpope/vim-surround";
+    "voldikss/vim-floaterm";
+    "vimwiki/vimwiki";
 -- Plug 'hrsh7th/nvim-compe'
-Plug('ms-jpq/coq_nvim', {['branch'] = 'coq'})
-Plug('ms-jpq/coq.artifacts', {['branch'] = 'artifacts'})
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    {"ms-jpq/coq.artifacts", branch = "artifacts"};
+    {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"};
+    "nvim-treesitter/nvim-treesitter-textobjects";
+    {"ms-jpq/coq_nvim", branch = "coq"};
+    "neovim/nvim-lspconfig";
 -- Latex
-Plug 'lervag/vimtex'
+    {"lervag/vimtex", opt=true};
 -- Git
-Plug 'airblade/vim-gitgutter'
+    "airblade/vim-gitgutter";
 --
-Plug 'ryanoasis/vim-devicons'
-vim.call('plug#end')
+    "ryanoasis/vim-devicons";
+}
 --}}}
 
 --{{{ Configuração
@@ -115,18 +114,18 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { 'pyright', 'vimls', 'rust_analyzer' }
-for _, lsp in ipairs(servers) do
+for _, lsp in pairs(servers) do
   nvim_lsp[lsp].setup {
-    on_attach = on_attach,
+	on_attach = on_attach,
     coq.lsp_ensure_capabilities(),
   }
 end
@@ -136,20 +135,6 @@ nvim_lsp['texlab'].setup{
   chktex = { onOpenAndSave = true }
 }
 -- }}}
-
-----{{{ Compe
---require'compe'.setup {
---  source = {
---    path = true;
---    buffer = true;
---    calc = true;
---    nvim_lsp = true;
---    nvim_lua = true;
---    ultisnips = true;
---    emoji = true;
---  };
---}
-----}}}
 
 --{{{ Tree-sitter
 require'nvim-treesitter.configs'.setup {
@@ -296,6 +281,7 @@ vim.g.startify_padding_left = 5
 
 --{{{ Keymaps
 vim.g.mapleader = ' '
+vim.api.nvim_set_keymap('n', '<leader>l', ':LspStart<cr>', {})
 --{{{ Movendo nos splits
 vim.api.nvim_set_keymap('n', '<c-h>', '<c-w>h', { noremap = true})
 vim.api.nvim_set_keymap('n', '<c-j>', '<c-w>j', { noremap = true})
@@ -330,8 +316,26 @@ vim.api.nvim_set_keymap('n', '<leader>tl', ':FloatermNew! cht.sh --shell latex<c
 --}}}
 --
 --
-vim.cmd('autocmd! TextYankPost * silent! lua vim.highlight.on_yank()')
-vim.cmd('autocmd! TermOpen * tnoremap <buffer> <Esc> <c-\\><c-n>')
-vim.cmd('autocmd! Filetype vimwiki silent! iunmap <buffer> <Tab>')
-vim.cmd('autocmd! Filetype python nnoremap <buffer> <leader><leader> :FloatermNew --disposable python %<cr>')
-vim.cmd('autocmd! Filetype rust nnoremap <buffer> <leader><leader> :FloatermNew --disposable cargo run<cr>')
+-- {{{ Auto commands
+  vim.api.nvim_exec(
+    [[
+augroup Python
+  autocmd!
+  autocmd Filetype python nnoremap <buffer> <leader><leader> :FloatermNew --disposable python %<cr>
+augroup END
+
+augroup Rust
+  autocmd!
+  autocmd Filetype rust nnoremap <buffer> <leader><leader> :FloatermNew --disposable cargo run<cr>
+augroup END
+
+augroup Vimwiki
+  autocmd!
+  autocmd Filetype vimwiki silent! iunmap <buffer> <Tab>
+augroup END
+
+autocmd! TextYankPost * silent! lua vim.highlight.on_yank()
+autocmd! TermOpen * tnoremap <buffer> <Esc> <c-\\><c-n>
+]],
+    true)
+-- }}}
