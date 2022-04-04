@@ -2,7 +2,7 @@ configuration {
 	modi: "drun,Finder:/home/ricardo/dotfiles/scripts/rofifinder";
 	show-icons: true;
 	icon-theme: "Papirus";
-	theme: "glue_pro_blue";
+  /* theme: "glue_pro_blue"; */
 	terminal: "alacritty";
 	display-drun: "Run";
 /*	width: 50;*/
@@ -150,3 +150,4 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+@theme "glue_pro_blue"
