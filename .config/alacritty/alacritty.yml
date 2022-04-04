@@ -46,7 +46,7 @@ font:
   bold_italic:
     family: Noto Mono
     style: Bold Italic
-  size: 10.0
+  size: 14.0
   offset:
     x: 1
     y: 1
