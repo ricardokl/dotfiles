@@ -10,6 +10,7 @@ require "paq" {
     -- "nvim-lua/popup.nvim";
     "nvim-lua/plenary.nvim";
     "nvim-telescope/telescope.nvim";
+    {"nvim-telescope/telescope-fzf-native.nvim", run = 'make'};
     -- "SirVer/ultisnips";
     "tpope/vim-commentary";
     "jiangmiao/auto-pairs";
@@ -88,6 +89,8 @@ vim.opt.updatetime     = 2000                             -- CursorHold interval
 vim.opt.virtualedit    = 'block'                          -- Cursor anda por colunas virtuais
 vim.opt.visualbell     = true                             -- stop annoying beeping for non-error errors
 vim.opt.whichwrap      = 'b,h,l,s,<,>,[,],~'              -- Permite passar de linhas com estes comandos
+vim.opt.timeoutlen     = 500
+vim.opt.ttimeoutlen    = 10
 --}}}
 
 --{{{ LSP
@@ -207,8 +210,16 @@ require'nvim-treesitter.configs'.setup {
 require'telescope'.setup {
   defaults = {
     color_devicons = true,
+    },
+  extensions = {
+      fzf = {
+        fuzzy = true,                    -- false will only do exact matching
+        override_generic_sorter = true,  -- override the generic sorter
+        override_file_sorter = true,     -- override the file sorter
     }
   }
+  }
+require('telescope').load_extension('fzf')
 --}}}
 
 --{{{ IndentLine
@@ -281,7 +292,6 @@ vim.g.startify_padding_left = 5
 
 --{{{ Keymaps
 vim.g.mapleader = ' '
-vim.api.nvim_set_keymap('n', '<leader>l', ':LspStart<cr>', {})
 --{{{ Movendo nos splits
 vim.api.nvim_set_keymap('n', '<c-h>', '<c-w>h', { noremap = true})
 vim.api.nvim_set_keymap('n', '<c-j>', '<c-w>j', { noremap = true})
