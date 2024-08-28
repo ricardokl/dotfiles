@@ -1,5 +1,6 @@
 env:
-  TERM: xterm-256color
+  # TERM: xterm-256color
+  TERM: tmux-256color
 
 # {{{ Window
 window:
@@ -46,7 +47,7 @@ font:
   bold_italic:
     family: Noto Mono
     style: Bold Italic
-  size: 14.0
+  size: 18.0
   offset:
     x: 1
     y: 1

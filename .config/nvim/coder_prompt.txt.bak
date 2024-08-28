@@ -1,0 +1,49 @@
+You will be provided with a piece of code and a task to modify that code. Your job is to make the necessary changes to the code to accomplish the task, and then present those changes in a udiff format, followed by an explanation of the changes.
+
+Here is the task you need to accomplish:
+<task>
+{$TASK}
+</task>
+
+Here is the original code:
+<code>
+{$CODE}
+</code>
+
+First, carefully analyze the code and the task. Think about what changes need to be made to accomplish the task.
+
+When you're ready to make changes, present them in a udiff format. The udiff format shows the differences between two files. Follow these guidelines:
+
+1. Include a hunk header: @@ -start,lines +start,lines @@
+   This indicates the starting line and number of lines for both the original and modified versions.
+
+2. Use minus (-) for removed lines, plus (+) for added lines, and no symbol for context lines.
+
+3. Include a few lines of context before and after the changes.
+
+4. Maintain proper indentation in the diff.
+
+Here's an example of a well-formatted udiff:
+
+```diff
+@@ -1,7 +1,7 @@
+ function greet(name) {
+-  console.log("Hello " + name);
++  console.log(`Hello, ${name}!`);
+   return true;
+ }
+```
+
+After presenting your changes in udiff format, provide an explanation of the changes you made and why you made them.
+
+Your response should be structured as follows:
+
+<udiff>
+Your udiff format changes here
+</udiff>
+
+<explanation>
+Your explanation of the changes here
+</explanation>
+
+Remember to only make changes that are necessary to accomplish the given task. If no changes are needed, state that in your explanation.

@@ -2,7 +2,7 @@
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export PAGER=/usr/bin/most
-export TERM=alacritty
+# export TERM=alacritty
 export PATH="$HOME/dotfiles/scripts:$HOME/bin:/home/ricardo/.local/share/gem/ruby/3.0.0/bin:$PATH"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*" ~'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -10,6 +10,8 @@ export FZF_CTRL_C_COMMAND='fd --trype d ~ --hidden'
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 export FZF_CTRL_C_OPTS="--preview 'tree -C {} | head -50'"
 export PYTHONSTARTUP="$(python -m jedi repl)"
+export HF_HOME=~/data/huggingface
+export BAT_PAGER=""
 
 #}}}
 
@@ -87,17 +89,11 @@ alias l='lsd --group-dirs first -Al'
 alias la='lsd --group-dirs first -A'
 alias ll='lsd --group-dirs first -l'
 alias ls='lsd --group-dirs first'
-alias lt='lsd --group-dirs first --tree --depth 2'
-alias alsa='alsamixer -c 0'
+alias lt='lsd --group-dirs first --tree --depth=2'
 alias pacfzf="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
-alias pacud="sudo pacman -Syup | sudo aria2c --dir=/var/cache/pacman/pkg/ -i -"
 alias pacu="sudo pacman -Syu"
 alias camera="echo 'gst-launch-1.0 souphttpsrc location=http://191.166.161.155:80/live ! jpegdec ! videoconvert ! v4l2sink device=/dev/video2' | xclip -selection clipboard"
-alias ddgr='w3m www.duckduckgo.com'
 alias keys="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
-alias zet="nvim ~/zettel/'$(date +%Y-%m-%d-%H%M)'.md"
-alias ze="~/zettel/'$(date +%Y-%m-%d-%H%M)'.md"
-# alias trackpad='sudo rmmod i2c_hid && sleep 1 && sudo modprobe i2c_hid'
 # }}}
 
 # {{{ Alias 2 - programas
@@ -135,9 +131,9 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Use history substring search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 # Keybindings
-source /usr/share/fzf/key-bindings.zsh
+source /home/ricardo/dotfiles/key-bindings.zsh
 # Completion
-source /usr/share/fzf/completion.zsh
+source /home/ricardo/dotfiles/completion.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -152,20 +148,6 @@ if [[ -r /usr/share/zsh/functions/command-not-found.zsh ]]; then
     export PKGFILE_PROMPT_INSTALL_MISSING=1
 fi
 # }}}
-
-#{{{ Funções
-function pacd(){
-	sudo pacman -Sp $1 | sudo aria2c --dir=/var/cache/pacman/pkg/ -i -
-}
-
-function ytd() {
-	youtube-dl $1 -o "/home/ricardo/Videos/%(title)s.%(ext)s"
-}
-
-function ytdl() {
-	youtube-dl $1 -o "/home/ricardo/Videos/%(playlist)s/%(title)s.%(ext)s" --yes-playlist
-}
-#}}}
 
 # {{{ Set terminal window and tab/icon title
 #
@@ -268,5 +250,7 @@ add-zsh-hook precmd mzc_termsupport_precmd
 add-zsh-hook preexec mzc_termsupport_preexec
 # }}}
 
-#
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+. "/home/ricardo/.wasmedge/env"
+eval "$(~/.cargo/bin/mise activate zsh)"
