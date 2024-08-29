@@ -23,6 +23,9 @@ require "paq" {
     "mfussenegger/nvim-dap";
     "jbyuki/one-small-step-for-vimkind"; -- NvimLua DAP
     "theHamsta/nvim-dap-virtual-text";
+    "MunifTanjim/nui.nvim";
+    "stevearc/dressing.nvim";
+    "yetone/avante.nvim";
 -- Latex
     {"lervag/vimtex", opt=true};
 -- Git

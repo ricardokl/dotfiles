@@ -1,5 +1,5 @@
 local dap = require("dap")
-dap.configurations.lua = { 
+dap.configurations.lua = {
   { 
     type = 'nlua', 
     request = 'attach',
