@@ -1,0 +1,14 @@
+openai-api-key: xxx
+# model: openai/anthropic/claude-3.5-sonnet
+# weak-model: openai/anthropic/claude-3.5-sonnet
+# qwen/qwen-2.5-coder-32b-instruct
+model: openai/qwen/qwen-2.5-coder-32b-instruct
+weak-model: openai/qwen/qwen-2.5-coder-32b-instruct
+openai-api-base: http://127.0.0.1:8000/v1/
+dark-mode: true
+show-model-warnings: false
+model-settings-file: /home/ricardo/.config/aider/.model.settings.yml
+show-diffs: true
+subtree-only: true
+vim: true
+stream: false

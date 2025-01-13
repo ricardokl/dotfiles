@@ -1,9 +1,0 @@
-#!/bin/bash
-
-xsetwacom set "Wacom Intuos BT S Pad pad" Button 2 key "+alt m -alt"
-# xsetwacom --set "15" MapToOutput eDP1
-# xsetwacom --set "21" MapToOutput eDP1
-
-
-xsetwacom --set "15" MapToOutput HDMI1
-xsetwacom --set "16" MapToOutput HDMI1
