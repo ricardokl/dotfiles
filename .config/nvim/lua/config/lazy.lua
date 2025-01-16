@@ -73,7 +73,7 @@ vim.api.nvim_set_keymap('n', ']B', ':bnext<cr>', { silent = true })
 vim.api.nvim_set_keymap('n', '<Space>ff', ':Telescope find_files<cr>', {})
 vim.api.nvim_set_keymap('n', '<Space>fd', ':Telescope fd<cr>', {})
 vim.api.nvim_set_keymap('n', '<Space>fl', ':Telescope loclist<cr>', {})
-vim.api.nvim_set_keymap('n', '<Space>bb', ':Telescope buffers<cr>', {})
+vim.api.nvim_set_keymap('n', '<Space>fb', ':Telescope buffers<cr>', {})
 --}}}
 
 
