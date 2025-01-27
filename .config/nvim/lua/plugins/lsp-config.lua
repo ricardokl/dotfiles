@@ -36,22 +36,16 @@ return {
               extraArgs = { "--all-features" }
             },
             cargo = {
+              features = "all"
             },
             check = {
+              command = "clippy",
               features = "all"
             },
             inlayHints = { enable = true },
           }
         },
       })
-
-      -- lspconfig.bacon_ls.setup({
-      --   settings = {
-      --     ['bacon-ls'] = {
-      --       -- waitTimeSeconds = 1,
-      --     }
-      --   }
-      -- })
 
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
@@ -63,10 +57,6 @@ return {
           }
         }
       })
-
-      -- lspconfig.texlab.setup({
-      --   chktek = { onOpenAndSave = true },
-      -- })
     end
   },
 }

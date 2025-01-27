@@ -18,7 +18,6 @@ return {
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
-      -- "rcarriga/nvim-notify",
     }
   },
 
@@ -26,7 +25,6 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    ---@type snacks.Config
     opts = {
       words = { enabled = false },
       scope = { enabled = false },
@@ -64,8 +62,8 @@ return {
     keys = {
       { "<leader>z",  function() Snacks.zen() end,                   desc = "Toggle Zen Mode" },
       { "<leader>Z",  function() Snacks.zen.zoom() end,              desc = "Toggle Zoom" },
-      { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
-      { "<leader>un", function() Snacks.notifier.hide() end,         desc = "Dismiss All Notifications" },
+      { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification History" },
+      { "<leader>nd", function() Snacks.notifier.hide() end,         desc = "Dismiss All Notifications" },
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {

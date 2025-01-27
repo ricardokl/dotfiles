@@ -1,3 +1,4 @@
 .config/nvim/plugged/
 .config/zsh/marlonrichert
 .config/zsh/zsh-users
+.config/nvim/lazy-lock.json

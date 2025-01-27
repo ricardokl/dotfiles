@@ -1,8 +1,8 @@
 return {
   {
     -- "airblade/vim-gitgutter"
-  "lewis6991/gitsigns.nvim",
-    config = function ()
+    "lewis6991/gitsigns.nvim",
+    config = function()
       require('gitsigns').setup({
         on_attach = function(bufnr)
           local gitsigns = require('gitsigns')
@@ -16,7 +16,7 @@ return {
           -- Navigation
           map('n', ']h', function()
             if vim.wo.diff then
-              vim.cmd.normal({']c', bang = true})
+              vim.cmd.normal({ ']c', bang = true })
             else
               gitsigns.nav_hunk('next')
             end
@@ -24,7 +24,7 @@ return {
 
           map('n', '[h', function()
             if vim.wo.diff then
-              vim.cmd.normal({'[c', bang = true})
+              vim.cmd.normal({ '[c', bang = true })
             else
               gitsigns.nav_hunk('prev')
             end
@@ -41,8 +41,9 @@ return {
           map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
 
           -- Text object
-          map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-        end})
+          map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+        end
+      })
     end
   },
 }

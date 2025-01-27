@@ -32,14 +32,14 @@ return {
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
-          { name = 'nvim_lua',   keyword_lengh = 1 },
+          { name = 'nvim_lua',  keyword_lengh = 1 },
           { name = 'treesitter' },
-          { name = 'supermaven', group_index = 1,  priority = 100 },
-          -- { name = 'codeium' },
+          -- { name = 'supermaven', group_index = 1,  priority = 100 },
+          -- { name = 'codeium',   priority = 100 },
           { name = 'path' },
-          { name = 'luasnip',    keyword_lengh = 2 },
-          { name = 'cmdline',    keyword_lengh = 2 },
-          { name = 'buffer',     keyword_lengh = 3 },
+          { name = 'luasnip',   keyword_lengh = 2 },
+          { name = 'cmdline',   keyword_lengh = 2 },
+          { name = 'buffer',    keyword_lengh = 3 },
         }, {
           -- { name = 'vsnip' },
         })
