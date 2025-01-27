@@ -62,7 +62,11 @@ clients:
     api_base: https://api.groq.com/openai/v1
     models:
       - name: llama-3.3-70b-versatile
-        max_input_tokens: 131072
+        max_input_tokens: 128000
+        supports_vision: false
+        supports_function_calling: true
+      - name: deepseek-r1-distill-llama-70b
+        max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
   - type: openai-compatible
