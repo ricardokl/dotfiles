@@ -1,2 +1,0 @@
-xbindkeys &
-setxkbmap -model abnt2 -layout br,us -variant abnt2 -option compose:ralt,caps:swapescape
