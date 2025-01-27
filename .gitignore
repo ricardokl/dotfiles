@@ -2,3 +2,4 @@
 .config/nvim/plugged/
 .config/zsh/marlonrichert
 .config/zsh/zsh-users
+.config/tmux/plugins
