@@ -3,3 +3,7 @@
 .config/zsh/marlonrichert
 .config/zsh/zsh-users
 .config/tmux/plugins
+.config/zsh/.zshrc.zwc
+.config/zsh/zhistory
+.config/aichat/functions/
+.config/aichat/sessions/
