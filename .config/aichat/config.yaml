@@ -5,7 +5,7 @@ temperature: 0
 stream: true
 save: false
 keybindings: vi
-editor: vi
+editor: nvim
 rag_reranker_model: jina:jina-reranker-v2-base-multilingual
 rag_embedding_model: jina:jina-embeddings-v2-base-code
 rag_top_k: 10
@@ -34,6 +34,18 @@ clients:
         max_input_tokens: 120000
         supports_vison: false
         supports_function_calling: true
+      - name: deepseek/deepseek-chat
+        max_input_tokens: 120000
+        supports_vison: false
+        supports_function_calling: true
+      - name: deepseek/deepseek-r1
+        max_input_tokens: 48000
+        supports_vison: false
+        supports_function_calling: true
+      - name: deepseek/deepseek-r1:nitro
+        max_input_tokens: 120000
+        supports_vison: false
+        supports_function_calling: true
       - name: qwen/qwen-2.5-coder-32b-instruct
         max_input_tokens: 24000
         supports_vison: false
@@ -42,13 +54,10 @@ clients:
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: false
-      - name: openai/gpt-4o-mini
+      - name: openai/o3-mini
         max_input_tokens: 128000
         supports_vision: false
-        supports_function_calling: true
-      - name: openai/o1-mini
-        max_input_tokens: 128000
-        supports_vision: false
+        supports_function_calling: false
   - type: openai-compatible
     name: sambanova
     api_base: https://api.sambanova.ai/v1

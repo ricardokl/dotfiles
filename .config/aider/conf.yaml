@@ -2,8 +2,9 @@ openai-api-key: xxx
 # model: openai/anthropic/claude-3.5-sonnet
 # weak-model: openai/anthropic/claude-3.5-sonnet
 # qwen/qwen-2.5-coder-32b-instruct
-model: openai/qwen/qwen-2.5-coder-32b-instruct
-weak-model: openai/qwen/qwen-2.5-coder-32b-instruct
+model: openai/deepseek/deepseek-r1:nitro
+editor-model: openai/anthropic/claude-3.5-sonnet
+weak-model: openai/microsoft/phi-4
 openai-api-base: http://127.0.0.1:8000/v1/
 dark-mode: true
 show-model-warnings: false

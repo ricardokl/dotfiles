@@ -1,0 +1,4 @@
+#!/bin/env bash
+
+http --follow POST 'https://documenter.gw.postman.com/api/examples/5900072/2s9YyzddrR?lang=shell&variant=Httpie&versionTag=latest' --verify=no "Content-type: application/json" | \
+  jq -r '.data[].example[] | "# \(.name)\nMethod: \(.request.method)\nHeader: \(.request.header)\nUrl: .\(.request.url)\n\n## Snippet\n\(.snippet.shell.httpie)\n\n## Response\n\(.response.body)"'

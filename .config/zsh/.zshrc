@@ -19,6 +19,7 @@ znap source zsh-users/zsh-autosuggestions
 
 znap eval zoxide 'zoxide init zsh'
 znap eval starship 'starship init zsh --print-full-init'
+znap eval mise 'mise activate zsh'
 znap prompt
 
 znap function _pip_completion pip 'eval "$(pip completion --zsh)"'
@@ -30,7 +31,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
-source /data/data/com.termux/files/home/.config/zsh/fzf.zsh
+source /home/ricardo/.config/zsh/fzf.zsh
 # Use fd to generate the list for directory completion
 znap function _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" --color=always . "$1"
@@ -82,6 +83,8 @@ alias la='lsd --group-dirs first -A'
 alias ll='lsd --group-dirs first -l'
 alias ls='lsd --group-dirs first'
 alias lt='lsd --group-dirs first --tree --depth=2'
+alias aider='aider --config /home/ricardo/.config/aider/conf.yaml'
+alias aider_architect='aider --config /home/ricardo/.config/aider/config.yaml --architect'
 
 alias yt='yt-dlp --paths /data/data/com.termux/files/home/storage/movies/ "$(termux-clipboard-get)"'
 # }}}
