@@ -11,6 +11,12 @@ return {
         endpoint = "https://api.groq.com/openai/v1/",
         model = "llama-3.3-70b-versatile",
       },
+      straico = {
+        __inherited_from = "openai",
+        api_key_name = "STRAICO_API_KEY",
+        endpoint = "http://127.0.0.1:8000/v1/",
+        model = "anthropic/claude-3.5-sonnet",
+      }
     }
   },
   build = "make BUILD_FROM_SOURCE=true",

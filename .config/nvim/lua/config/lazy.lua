@@ -1,6 +1,6 @@
 --Must set `mapleader`/`maplocalleader` before lazy
-require('config.keymaps')
-require('config.opts')
+-- require('config.keymaps')
+-- require('config.opts')
 
 --{{{ Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -43,4 +43,4 @@ require("lazy").setup({
 })
 --}}}
 
-vim.cmd.colorscheme("onedark")
+-- vim.cmd.colorscheme("onedark")

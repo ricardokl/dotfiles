@@ -1,21 +1,24 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
-    dependencies = {   "nvim-treesitter/nvim-treesitter-textobjects" },
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    dependencies = {
+      "nvim-treesitter/playground",
+      "nvim-treesitter/nvim-treesitter-textobjects"
+    },
     config = function()
       local config = require("nvim-treesitter.configs")
       config.setup({
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
-        ensure_installed = { "python", "r", "lua", "latex", "bibtex", "bash", "yaml", "json", "html", "css","rust", "markdown","markdown_inline"},
+        ensure_installed = { "python", "r", "lua", "latex", "bibtex", "bash", "yaml", "json", "html", "css", "rust", "markdown", "markdown_inline" },
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "gnn",
-            node_incremental = "gnm",
-            node_decremental = "gnd",
-            scope_incremental = "gsm"
+            init_selection = "<a-k>",
+            node_incremental = "<a-k>",
+            node_decremental = "<a-j>",
           },
         },
         textobjects = {
@@ -23,8 +26,6 @@ return {
             enable = true,
             lookahead = true,
             keymaps = {
-              ["ab"] = "@block.outer",
-              ["ib"] = "@block.inner",
               ["af"] = "@function.outer",
               ["if"] = "@function.inner",
               ["ac"] = "@call.outer",
@@ -40,21 +41,19 @@ return {
           move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next = {
-              ["]b"] = { query = "@block.outer", desc = "Next block" },
-              ["]f"] = { query = "@function.outer", desc = "Next function"},
-              ["]c"] = { query = "@call.outer", desc = "Next call"},
-              ["]a"] = { query = "@parameter.inner", desc = "Next argument"},
-              ["]o"] = { query = "@class.inner", desc = "Next object"},
-              ["]r"] = { query = "@return.inner", desc = "Next return"},
+            goto_next_start = {
+              ["]f"] = { query = "@function.outer", desc = "Next function" },
+              ["]c"] = { query = "@call.outer", desc = "Next call" },
+              ["]a"] = { query = "@parameter.inner", desc = "Next argument" },
+              ["]o"] = { query = "@class.inner", desc = "Next object" },
+              ["]r"] = { query = "@return.inner", desc = "Next return" },
             },
-            goto_previous = {
-              ["[b"] = { query = "@block.outer", desc = "Previous block"},
-              ["[f"] = { query = "@function.outer", desc = "Previous function"},
-              ["[c"] = { query = "@call.outer", desc = "Previous call"},
-              ["[a"] = { query = "@parameter.inner", desc = "Previous argument"},
-              ["[o"] = { query = "@class.inner", desc = "Previous object"},
-              ["[r"] = { query = "@return.inner", desc = "Previous return"},
+            goto_previous_start = {
+              ["[f"] = { query = "@function.outer", desc = "Previous function" },
+              ["[c"] = { query = "@call.outer", desc = "Previous call" },
+              ["[a"] = { query = "@parameter.inner", desc = "Previous argument" },
+              ["[o"] = { query = "@class.inner", desc = "Previous object" },
+              ["[r"] = { query = "@return.inner", desc = "Previous return" },
             },
           },
         },
