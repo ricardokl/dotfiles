@@ -44,11 +44,11 @@ return {
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'treesitter' },
-          { name = 'path' },
-          { name = 'luasnip',   keyword_lengh = 2 },
-          { name = 'cmdline',   keyword_lengh = 2 },
+          { name = 'nvim_lsp',   keyword_lengh = 2 },
+          { name = 'treesitter', keyword_lengh = 2 },
+          { name = 'path',       keyword_lengh = 2 },
+          { name = 'luasnip',    keyword_lengh = 3 },
+          { name = 'cmdline',    keyword_lengh = 2 },
         }, {
           { name = 'buffer', keyword_lengh = 3 },
           -- { name = 'vsnip' },

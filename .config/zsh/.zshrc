@@ -19,7 +19,9 @@ znap source zsh-users/zsh-autosuggestions
 
 znap eval zoxide 'zoxide init zsh'
 znap eval starship 'starship init zsh --print-full-init'
-znap eval mise 'mise activate zsh'
+if [ -n "$TERMUX_VERSION" ]; then
+  znap eval mise 'mise activate zsh'
+fi
 znap prompt
 
 znap function _pip_completion pip 'eval "$(pip completion --zsh)"'
@@ -30,8 +32,13 @@ compctl -K _pip_completion pip
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+source $HOME/.config/zsh/fzf.zsh
 
-source /home/ricardo/.config/zsh/fzf.zsh
+# if [ -n "$TERMUX_VERSION" ]; then
+#   source /data/data/com.termux/files/home/.config/zsh/fzf.zsh
+# else
+#   source /home/ricardo/.config/zsh/fzf.zsh
+# fi
 # Use fd to generate the list for directory completion
 znap function _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" --color=always . "$1"

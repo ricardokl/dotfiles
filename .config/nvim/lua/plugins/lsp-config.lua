@@ -31,18 +31,13 @@ return {
         end,
         settings = {
           ['rust-analyzer'] = {
-            checkOnSave = {
-              command = "clippy",
-              extraArgs = { "--all-features" }
-            },
-            cargo = {
-              features = "all"
-            },
+            checkOnSave = { true },
+            inlayHints = { enable = true },
+            cargo = { features = "all" },
             check = {
               command = "clippy",
               features = "all"
             },
-            inlayHints = { enable = true },
           }
         },
       })
