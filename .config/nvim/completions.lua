@@ -16,8 +16,8 @@ return {
     config = function()
       require('cmp_nvim_lsp').setup({})
       require("luasnip.loaders.from_vscode").lazy_load()
-      local cmp = require("cmp")
       local lspkind = require("lspkind")
+      local cmp = require("cmp")
       cmp.setup({
         formatting = {
           format = lspkind.cmp_format({
@@ -82,12 +82,5 @@ return {
         matching = { disallow_symbol_nonprefix_matching = false }
       })
     end
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets"
-    }
   },
 }
