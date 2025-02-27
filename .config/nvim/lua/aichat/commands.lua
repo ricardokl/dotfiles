@@ -39,6 +39,10 @@ function M.setup()
                ok and vim.log.levels.INFO or vim.log.levels.ERROR)
   end, { nargs = "+", desc = "Set Aichat flags (e.g. --role assistant --rag myrag)" })
 
+  api.nvim_create_user_command("AichatSetMenu", function()
+    config.show_config_menu()
+  end, { nargs = 0, desc = "Set Aichat flags (e.g. --role assistant --rag myrag)" })
+
   api.nvim_create_user_command("Aichat", create_aichat_command("1filecoder"),
     { range = "%", nargs = "*", desc = "Run aichat with selected content" })
 
