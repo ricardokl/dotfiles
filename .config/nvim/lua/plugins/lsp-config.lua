@@ -3,8 +3,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
       "hrsh7th/nvim-cmp",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
@@ -13,36 +11,13 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "onsails/lspkind.nvim",
-      "rafamadriz/friendly-snippets"
-      -- "hrsh7th/cmp-nvim-lua",
-      -- "ray-x/cmp-treesitter",
+      "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-nvim-lua",
+      "ray-x/cmp-treesitter",
     },
     config = function()
-      require("mason").setup({})
       require('cmp_nvim_lsp').setup({})
       require("luasnip.loaders.from_vscode").lazy_load()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls" },
-        handlers = {
-          function(server_name)
-            require("lspconfig")[server_name].setup({})
-          end,
-
-          ["lua_ls"] = function()
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({
-              -- capabilities = capabilities,
-              settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { 'vim' },
-                  }
-                }
-              }
-            })
-          end,
-        },
-      })
 
       local lspkind = require("lspkind")
       local cmp = require("cmp")
@@ -94,28 +69,27 @@ return {
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp', keyword_lengh = 2 },
-          -- { name = 'treesitter', keyword_lengh = 2 },
+          { name = 'treesitter', keyword_lengh = 2 },
           { name = 'path',     keyword_lengh = 2 },
           { name = 'luasnip',  keyword_lengh = 3 },
           { name = 'cmdline',  keyword_lengh = 2 },
         }, {
           { name = 'buffer', keyword_lengh = 3 },
-          -- { name = 'vsnip' },
         }),
       })
 
-      -- cmp.setup.filetype('lua', {
-      --   sources = cmp.config.sources({
-      --     { name = 'nvim_lsp' },
-      --     { name = 'nvim_lua', keyword_lengh = 1 },
-      --     -- { name = 'treesitter' },
-      --     { name = 'path' },
-      --     { name = 'luasnip',  keyword_lengh = 2 },
-      --     { name = 'cmdline',  keyword_lengh = 2 },
-      --   }, {
-      --     { name = 'buffer', keyword_lengh = 3 },
-      --   })
-      -- })
+      cmp.setup.filetype('lua', {
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'nvim_lua', keyword_lengh = 1 },
+          { name = 'treesitter' },
+          { name = 'path' },
+          { name = 'luasnip',  keyword_lengh = 2 },
+          { name = 'cmdline',  keyword_lengh = 2 },
+        }, {
+          { name = 'buffer', keyword_lengh = 3 },
+        })
+      })
 
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
