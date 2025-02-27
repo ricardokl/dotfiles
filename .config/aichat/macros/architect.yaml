@@ -1,0 +1,8 @@
+variables:
+  - name: args
+    rest: true
+steps:
+  - .role architect 
+  - '{{args}}'
+  - .role coder
+  - .file %%

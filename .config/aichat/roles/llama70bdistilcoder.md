@@ -1,6 +1,6 @@
 ---
-model: sambanova:Llama-3.1-Tulu-3-405B
-temperature: 0.0
+model: sambanova:DeepSeek-R1-Distill-Llama-70B
+temperature: 0.5
 ---
 Provide only code without comments or explanations.
 ### INPUT:

@@ -1,0 +1,8 @@
+variables:
+  - name: args
+    rest: true
+steps:
+  - .role o3architect -- '{{args}}'
+  - .role coder
+  - .file %%
+
