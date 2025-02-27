@@ -120,14 +120,14 @@ function M.show_config_menu()
 end
 
 function M.show_mode_menu()
-  local mode_menu_items = {
-    { text = "Set Role", value = "--role" },
-    { text = "Set Agent", value = "--agent" },
-    { text = "Set Macro", value = "--macro" },
+  local mode_options = {
+    { text = "Set Role", value = "--role", list_cmd = "--list-roles" },
+    { text = "Set Agent", value = "--agent", list_cmd = "--list-agents" },
+    { text = "Set Macro", value = "--macro", list_cmd = "--list-macros" },
     { text = "Clear Mode Settings", value = "clear" },
   }
 
-  vim.ui.select(mode_menu_items, {
+  vim.ui.select(mode_options, {
     prompt = "Select mode option:",
     format_item = function(item) return item.text end,
   }, function(choice)
@@ -140,39 +140,23 @@ function M.show_mode_menu()
       return
     end
 
-    local list_command = ""
-    if choice.value == "--role" then
-      list_command = "--list-roles"
-    elseif choice.value == "--agent" then
-      list_command = "--list-agents"
-    elseif choice.value == "--macro" then
-      list_command = "--list-macros"
+    local options = get_aichat_results(choice.list_cmd)
+    if #options > 0 then
+      vim.ui.select(options, {
+        prompt = "Select value for " .. choice.text .. ":",
+      }, function(selected_value)
+        if selected_value and selected_value ~= "" then
+          M.aichat_config.mode_flag = choice.value
+          M.aichat_config.mode_arg = selected_value
+          vim.notify(string.format("Set %s to '%s'", choice.text, selected_value))
+        end
+      end)
+    else
+      vim.notify("No options available for " .. choice.text, vim.log.levels.ERROR)
     end
-
-    handle_selection(choice.value, choice.text, list_command, function(selected_value)
-      M.aichat_config.mode_flag = choice.value
-      M.aichat_config.mode_arg = selected_value
-      vim.notify(string.format("Set %s to '%s'", choice.text, selected_value))
-    end)
   end)
 end
 
--- Helper function to handle selection with list or input
-function handle_selection(value, text, list_command, callback)
-  local options = list_command ~= "" and get_aichat_results(list_command) or {}
-
-  if #options > 0 then
-    vim.ui.select(options, {
-      prompt = "Select value for " .. text .. ":",
-    }, function(selected_value)
-      if selected_value and selected_value ~= "" then
-        callback(selected_value)
-      end
-    end)
-  else
-    vim.notify("No options available for " .. text, vim.log.levels.ERROR)
-  end
-end
 
 function M.show_rag_menu()
   handle_config_menu("RAG", "rag", "--list-rags")
@@ -182,12 +166,15 @@ function M.show_session_menu()
   handle_config_menu("Session", "session", "--list-sessions")
 end
 
--- Helper function to handle common config menu pattern
 function handle_config_menu(name, config_key, list_command)
-  local options = {
-    { text = "Set " .. name .. " value", value = "set" },
-    { text = "Clear " .. name .. " value", value = "clear" },
-  }
+  local values = get_aichat_results(list_command)
+  local options = {}
+
+  for _, value in ipairs(values) do
+    table.insert(options, { text = "Set " .. name .. " to: " .. value, value = value })
+  end
+
+  table.insert(options, { text = "Clear " .. name .. " value", value = "clear" })
 
   vim.ui.select(options, {
     prompt = name .. " options:",
@@ -201,19 +188,8 @@ function handle_config_menu(name, config_key, list_command)
       return
     end
 
-    local values = get_aichat_results(list_command)
-    if #values > 0 then
-      vim.ui.select(values, {
-        prompt = "Select " .. name .. " value:",
-      }, function(selected_value)
-        if selected_value and selected_value ~= "" then
-          M.aichat_config[config_key] = selected_value
-          vim.notify(name .. " set to: " .. selected_value)
-        end
-      end)
-    else
-      vim.notify("No " .. name .. " values available", vim.log.levels.ERROR)
-    end
+    M.aichat_config[config_key] = choice.value
+    vim.notify(name .. " set to: " .. choice.value)
   end)
 end
 

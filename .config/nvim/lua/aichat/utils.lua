@@ -16,18 +16,5 @@ function M.extract_content(input_str)
   return input_str
 end
 
--- function M.extract_content(output)
---   if #output == 0 then
---     return output
---   end
---   if output[1]:sub(1, 3) == "```" then
---     table.remove(output, 1)
---     if #output > 0 and output[#output]:sub(1, 3) == "```" then
---       table.remove(output, #output)
---     end
---   end
---   return output
--- end
-
 return M
 
