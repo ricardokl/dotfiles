@@ -157,10 +157,18 @@ function M.show_mode_menu()
   end)
 end
 
+function M.show_rag_menu()
+  handle_config_menu("RAG", "rag", "--list-rags")
+end
+
+function M.show_session_menu()
+  handle_config_menu("Session", "session", "--list-sessions")
+end
+
 -- Helper function to handle selection with list or input
 function handle_selection(value, text, list_command, callback)
   local options = list_command ~= "" and get_aichat_results(list_command) or {}
-
+  
   if #options > 0 then
     vim.ui.select(options, {
       prompt = "Select value for " .. text .. ":",
@@ -170,16 +178,14 @@ function handle_selection(value, text, list_command, callback)
       end
     end)
   else
-    vim.notify("No options available for " .. text, vim.log.levels.ERROR)
+    vim.ui.input({
+      prompt = "Enter value for " .. text .. ":",
+    }, function(input)
+      if input and input ~= "" then
+        callback(input)
+      end
+    end)
   end
-end
-
-function M.show_rag_menu()
-  handle_config_menu("RAG", "rag", "--list-rags")
-end
-
-function M.show_session_menu()
-  handle_config_menu("Session", "session", "--list-sessions")
 end
 
 -- Helper function to handle common config menu pattern
@@ -212,7 +218,15 @@ function handle_config_menu(name, config_key, list_command)
         end
       end)
     else
-      vim.notify("No " .. name .. " values available", vim.log.levels.ERROR)
+      vim.ui.input({
+        prompt = "Enter " .. name .. " value:",
+        default = M.aichat_config[config_key] or "",
+      }, function(input)
+        if input and input ~= "" then
+          M.aichat_config[config_key] = input
+          vim.notify(name .. " set to: " .. input)
+        end
+      end)
     end
   end)
 end
