@@ -1,0 +1,37 @@
+{
+  "openai/anthopic/claude-3.7-sonnet": {
+        "max_tokens": 8192,
+        "max_input_tokens": 200000,
+        "max_output_tokens": 8192,
+        "mode": "chat",
+        "supports_function_calling": true,
+        "supports_vision": false,
+        "tool_use_system_prompt_tokens": 159,
+        "supports_assistant_prefill": false,
+        "supports_response_schema": true,
+    },
+
+  "openai/anthopic/claude-3.7-sonnet:thinking": {
+        "max_tokens": 8192,
+        "max_input_tokens": 200000,
+        "max_output_tokens": 8192,
+        "mode": "chat",
+        "supports_function_calling": true,
+        "supports_vision": false,
+        "tool_use_system_prompt_tokens": 159,
+        "supports_assistant_prefill": false,
+        "supports_response_schema": true,
+    },
+
+"sambanova/Llama-3.1-Tulu-3-405B": {
+        "max_tokens": 16000,
+        "max_input_tokens": 16000,
+        "max_output_tokens": 16000, 
+        "input_cost_per_token": 0.000005,
+        "output_cost_per_token": 0.000010,
+        "litellm_provider": "sambanova",
+        "supports_function_calling": true,
+        "mode": "chat",
+        "supports_tool_choice": true
+    },
+}

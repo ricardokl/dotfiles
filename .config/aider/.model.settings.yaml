@@ -1,3 +1,25 @@
+- name: openai/anthropic/claude-3.7-sonnet:thinking
+  edit_format: diff
+  streaming: false
+  weak_model_name: sambanova/Llama-3.1-Tulu-3-405B
+  use_repo_map: true
+  examples_as_sys_msg: true
+  extra_params:
+    max_tokens: 64000
+  cache_control: false
+  editor_model_name: openai/anthropic/claude-3.7-sonnet
+  editor_edit_format: editor-diff
+- name: openai/anthropic/claude-3.7-sonnet
+  edit_format: diff
+  streaming: false
+  weak_model_name: sambanova/Llama-3.1-Tulu-3-405B
+  use_repo_map: true
+  examples_as_sys_msg: true
+  extra_params:
+    max_tokens: 64000
+  cache_control: false
+  editor_model_name: openai/anthropic/claude-3.7-sonnet
+  editor_edit_format: editor-diff
 - name: openai/anthropic/claude-3.5-sonnet
   cache_control: false
   caches_by-default: false
