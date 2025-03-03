@@ -65,7 +65,7 @@ function M.run_aichat_job(input, flags)
     end
   end)
 
-  local success = vim.wait(50000, function() return done end, 50)
+  local success = vim.wait(90000, function() return done end, 50)
   if not success then
     vim.notify("aichat process timed out", ERROR)
   end
