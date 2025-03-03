@@ -1,4 +1,4 @@
-#files: 969	version: 5.9
+#files: 989	version: 5.9
 
 _comps=(
 '-' '_precommand'
@@ -108,6 +108,7 @@ _comps=(
 'bogofilter' '_bogofilter'
 'bogotune' '_bogofilter'
 'bogoutil' '_bogofilter'
+'bootctl' '_bootctl'
 'bpython' '_bpython'
 'bpython2' '_bpython'
 'bpython2-gtk' '_bpython'
@@ -140,6 +141,7 @@ _comps=(
 'builtin' '_builtin'
 'bunzip2' '_bzip2'
 'burst' '_mh'
+'busctl' '_busctl'
 'bzcat' '_bzip2'
 'bzegrep' '_grep'
 'bzfgrep' '_grep'
@@ -661,6 +663,7 @@ _comps=(
 'history' '_fc'
 'host' '_host'
 'hostname' '_hostname'
+'hostnamectl' '_hostnamectl'
 'hotjava' '_webbrowser'
 'htop' '_htop'
 'hwinfo' '_hwinfo'
@@ -726,9 +729,11 @@ _comps=(
 'joe' '_joe'
 'join' '_join'
 'jot' '_jot'
+'journalctl' '_journalctl'
 'jq' '_jq'
 'kdeconnect-cli' '_kdeconnect'
 'kdump' '_kdump'
+'kernel-install' '_kernel-install'
 'keystone' '_openstack'
 'keytool' '_java'
 'kfmclient' '_kfmclient'
@@ -777,10 +782,12 @@ _comps=(
 'loadkeys' '_loadkeys'
 'local' '_typeset'
 'locale' '_locale'
+'localectl' '_localectl'
 'localedef' '_localedef'
 'locate' '_locate'
 'log' '_nothing'
 'logger' '_logger'
+'loginctl' '_loginctl'
 'logname' '_nothing'
 'look' '_look'
 'losetup' '_losetup'
@@ -943,6 +950,7 @@ _comps=(
 'netrik' '_webbrowser'
 'netscape' '_netscape'
 'netstat' '_netstat'
+'networkctl' '_networkctl'
 'networksetup' '_networksetup'
 'neutron' '_openstack'
 'new' '_mh'
@@ -1376,6 +1384,21 @@ _comps=(
 'syspatch' '_syspatch'
 'sysrc' '_sysrc'
 'systat' '_systat'
+'systemctl' '_systemctl'
+'systemd-analyze' '_systemd-analyze'
+'systemd-ask-password' '_systemd'
+'systemd-cat' '_systemd'
+'systemd-cgls' '_systemd'
+'systemd-cgtop' '_systemd'
+'systemd-delta' '_systemd-delta'
+'systemd-detect-virt' '_systemd'
+'systemd-inhibit' '_systemd-inhibit'
+'systemd-machine-id-setup' '_systemd'
+'systemd-notify' '_systemd'
+'systemd-path' '_systemd-path'
+'systemd-run' '_systemd-run'
+'systemd-tmpfiles' '_systemd-tmpfiles'
+'systemd-tty-ask-password-agent' '_systemd'
 'system_profiler' '_system_profiler'
 'sysupgrade' '_sysupgrade'
 'tac' '_tac'
@@ -1404,6 +1427,7 @@ _comps=(
 'tig' '_git'
 '-tilde-' '_tilde'
 'time' '_precommand'
+'timedatectl' '_timedatectl'
 'timeout' '_timeout'
 'times' '_nothing'
 'tin' '_tin'
@@ -1841,7 +1865,11 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _curl _dpkg-parsechangelog _ninja _cdr _floppy \
+autoload -Uz _bootctl _busctl _curl _dpkg-parsechangelog _hostnamectl \
+            _journalctl _kernel-install _localectl _loginctl _networkctl \
+            _ninja _sd_hosts_or_user_at_host _sd_outputmodes _sd_unit_files _systemctl \
+            _systemd _systemd-analyze _systemd-delta _systemd-inhibit _systemd-path \
+            _systemd-run _systemd-tmpfiles _timedatectl _cdr _floppy \
             _logical_volumes _lscfg _lsdev _lslv _lspv \
             _lsvg _object_classes _physical_volumes _smit _volume_groups \
             _bsdconfig _bsd_disks _bsdinstall _bsd_pkg _chflags \
