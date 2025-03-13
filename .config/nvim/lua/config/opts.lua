@@ -61,3 +61,4 @@ vim.opt.spell           = true                          -- Enable spell checking
 vim.opt.spelllang       = { "en_us", "pt_br", "de_de" } -- Use US English, Portuguese (Brazil), and German
 vim.g.python3_host_prog = '/bin/python3'
 vim.opt.number          = true                          -- Show line numbers
+vim.opt.autoread        = true                          -- Automatically read file when changed on disk

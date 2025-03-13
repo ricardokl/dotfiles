@@ -110,3 +110,5 @@ alias 9='cd -9'
 # }}}
 
 
+
+. "$HOME/.local/share/../bin/env"
