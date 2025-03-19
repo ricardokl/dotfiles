@@ -27,9 +27,9 @@ return {
     event = "VeryLazy",
   },
 
-  {
-    "jiangmiao/auto-pairs",
-  },
+  -- {
+  --   "jiangmiao/auto-pairs",
+  -- },
 
   {
     "numToStr/Navigator.nvim",
@@ -41,5 +41,11 @@ return {
   {
     "nvim-lua/plenary.nvim",
     lazy = false,
+  },
+
+  {
+    "echasnovski/mini.statusline",
+    version = false,
+    opts = {}
   },
 }

@@ -12,12 +12,34 @@ vim.api.nvim_create_autocmd("TermOpen",
 
 vim.api.nvim_create_autocmd("TextYankPost", { pattern = "*", command = "lua vim.highlight.on_yank()", once = true })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | checktime | endif",
-  pattern = { "*" }
+-- Check for file changes when these events occur
+vim.api.nvim_create_autocmd({
+  "BufEnter",
+  "CursorHold",
+  "CursorHoldI",
+  "FocusGained",
+  "WinEnter",  -- Added to detect when switching windows
+  "VimResume", -- Added to detect when Neovim regains focus
+}, {
+  callback = function()
+    if vim.fn.mode() ~= 'c' then
+      local bufnr = vim.api.nvim_get_current_buf()
+      -- Only check files that exist on disk and are loaded
+      if vim.fn.filereadable(vim.fn.expand('%')) == 1 and vim.bo[bufnr].buftype == '' then
+        vim.cmd('checktime ' .. bufnr)
+      end
+    end
+    return true
+  end,
+  pattern = "*",
+  desc = "Check for external file changes"
 })
 
-vim.api.nvim_create_autocmd({ "FileChangedShellPost" }, {
-  command = 'echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None',
-  pattern = { "*" }
+-- Notification when a file has changed
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  callback = function()
+    vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.WARN)
+  end,
+  pattern = "*",
+  desc = "Notify when file is changed externally"
 })
