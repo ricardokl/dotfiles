@@ -9,3 +9,4 @@
 .config/aichat/functions/
 .config/aichat/sessions/
 .config/aichat/rags/straico.yaml
+*.so

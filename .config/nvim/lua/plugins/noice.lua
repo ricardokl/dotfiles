@@ -33,7 +33,7 @@ return {
       quickfile = { enabled = true },
       bigfile = { enabled = true },
       scroll = { enabled = true },
-      input = { enabled = true },
+      input = { enabled = false },
       indent = {
         enabled = true,
         chunk = {
