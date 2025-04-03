@@ -10,9 +10,9 @@ return {
     }
   },
 
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim"
-  -- },
+  {
+    "vimpostor/vim-tpipeline",
+  },
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
