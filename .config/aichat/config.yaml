@@ -1,5 +1,6 @@
-model: local:anthropic/claude-3.7-sonnet
+# model: local:anthropic/claude-3.7-sonnet
 # model: groq:llama-3.3-70b-versatile
+model: groq:llama-3.3-70b-versatile
 temperature: 0
 stream: true
 save: false
@@ -37,40 +38,32 @@ clients:
         max_input_tokens: 150000
         supports_vison: false
         supports_function_calling: true
-      - name: deepseek/deepseek-chat
+      - name: deepseek/deepseek-chat-v3-0324
         max_input_tokens: 120000
-        supports_vison: false
-        supports_function_calling: true
-      - name: deepseek/deepseek-r1
-        max_input_tokens: 48000
         supports_vison: false
         supports_function_calling: true
       - name: deepseek/deepseek-r1:nitro
         max_input_tokens: 120000
         supports_vison: false
         supports_function_calling: true
-      - name: openai/o3-mini
-        max_input_tokens: 128000
-        supports_vision: false
-        supports_function_calling: false
       - name: openai/o3-mini-high
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: false
+      - name: google/gemini-2.5-pro-exp-03-25:free
+        max_input_tokens: 150000
+        supports_vision: false
+        supports_function_calling: true
   - type: openai-compatible
     name: sambanova
     api_base: https://api.sambanova.ai/v1
     models:
       - name: DeepSeek-R1
-        max_input_tokens: 8192
+        max_input_tokens: 150000
         supports_vision: false
         supports_function_calling: true
-      - name: Llama-3.1-Tulu-3-405B
-        max_input_tokens: 8192
-        supports_vision: false
-        supports_function_calling: true
-      - name: DeepSeek-R1-Distill-Llama-70B
-        max_input_tokens: 8192
+      - name: DeepSeek-V3-0324
+        max_input_tokens: 150000
         supports_vision: false
         supports_function_calling: true
   - type: openai-compatible

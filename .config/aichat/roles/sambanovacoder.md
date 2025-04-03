@@ -1,6 +1,5 @@
 ---
-# model: local:anthropic/claude-3.7-sonnet
-model: local:deepseek/deepseek-chat-v3-0324
+model: sambanova:DeepSeek-V3-0324
 temperature: 0.0
 ---
 Act as an expert software developer and make changes to source code.
