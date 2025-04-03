@@ -18,7 +18,17 @@ return {
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+    fuzzy = { implementation = "prefer_rust_with_warning" },
+    signature = { enabled = true },
+    completion = {
+      ghost_text = {
+        show_with_menu = false,
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 500,
+      },
+    },
   },
   opts_extend = { "sources.default" }
 }
