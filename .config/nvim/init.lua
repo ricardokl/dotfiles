@@ -2,6 +2,9 @@ require("config.autocmds")
 require('config.keymaps')
 require('config.opts')
 require("config.lazy")
-vim.cmd.colorscheme("onedark")
 require("aichat_nvim")
-vim.o.laststatus = 0
+vim.cmd.colorscheme("onedark")
+-- vim.o.laststatus = 0
+vim.g.augment_workspace_folders = { '/home/ricardo/projects/onedark_nvim_rs/', '/home/ricardo/projects/aider/',
+  '/home/ricardo/projects/straico-client/', '/home/ricardo/projects/straico-proxy/',
+  '/home/ricardo/projects/aichat_nvim/' }

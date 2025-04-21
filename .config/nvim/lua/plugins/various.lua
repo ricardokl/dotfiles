@@ -66,4 +66,8 @@ return {
       }
     }
   },
+
+  {
+    'augmentcode/augment.vim'
+  },
 }
