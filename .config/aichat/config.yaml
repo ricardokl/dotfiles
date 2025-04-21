@@ -59,11 +59,11 @@ clients:
     api_base: https://api.sambanova.ai/v1
     models:
       - name: DeepSeek-R1
-        max_input_tokens: 150000
+        max_input_tokens: 16000
         supports_vision: false
         supports_function_calling: true
       - name: DeepSeek-V3-0324
-        max_input_tokens: 150000
+        max_input_tokens: 8000
         supports_vision: false
         supports_function_calling: true
   - type: openai-compatible
