@@ -10,3 +10,4 @@
 .config/aichat/sessions/
 .config/aichat/rags/straico.yaml
 *.so
+*zwc
