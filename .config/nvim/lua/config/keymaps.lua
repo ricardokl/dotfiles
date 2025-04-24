@@ -23,6 +23,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', "Diagnostics float")
     map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', "Goto next diagnostic")
     map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', "Goto previous diagnostic")
+    map('n', '<leader>cs', '<cmd>Telescope lsp_document_symbols<CR>', "Document symbols")
+    map('n', '<leader>cd', '<cmd>Telescope diagnostics<CR>', "Diagnostics")
   end
 })
 --}}}
@@ -51,8 +53,10 @@ vim.api.nvim_set_keymap('n', ']b', ':bnext<cr>', { silent = true })
 --}}}
 
 --{{{ Telescope
-vim.api.nvim_set_keymap('n', '<Space>ff', ':Telescope find_files<cr>', {})
-vim.api.nvim_set_keymap('n', '<Space>fd', ':Telescope fd<cr>', {})
-vim.api.nvim_set_keymap('n', '<Space>fl', ':Telescope loclist<cr>', {})
-vim.api.nvim_set_keymap('n', '<Space>fb', ':Telescope buffers<cr>', {})
+vim.api.nvim_set_keymap('n', '<Space>ff', '<cmd>Telescope find_files<cr>', {})
+vim.api.nvim_set_keymap('n', '<Space>fd', '<cmd>Telescope fd<cr>', {})
+vim.api.nvim_set_keymap('n', '<Space>fl', '<cmd>Telescope loclist<cr>', {})
+vim.api.nvim_set_keymap('n', '<Space>fb', '<cmd>Telescope buffers<cr>', {})
 --}}}
+
+vim.api.nvim_set_keymap('i', '<C-y>', '<cmd>call augment#Accept()<CR>', { silent = true })
