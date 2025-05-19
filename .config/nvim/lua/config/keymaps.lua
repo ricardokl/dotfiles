@@ -47,11 +47,6 @@ splits_map('<c-up>', '<c-w>k', "move to split up")
 splits_map('<c-right>', '<c-w>l', "move to split right")
 --}}}
 
---{{{ Movendo entre bufers
-vim.api.nvim_set_keymap('n', '[b', ':bprevious<cr>', { silent = true })
-vim.api.nvim_set_keymap('n', ']b', ':bnext<cr>', { silent = true })
---}}}
-
 --{{{ Telescope
 vim.api.nvim_set_keymap('n', '<Space>ff', '<cmd>Telescope find_files<cr>', {})
 vim.api.nvim_set_keymap('n', '<Space>fd', '<cmd>Telescope fd<cr>', {})
