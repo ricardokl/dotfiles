@@ -13,16 +13,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', "Goto definition")
-    map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', "Find implementations")
-    map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', "Find references")
-    map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', "Hover")
-    map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', "Signature help")
     map('v', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', "LSP Format")
-    map('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', "Rename")
-    map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', "Code actions")
     map('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', "Diagnostics float")
-    map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', "Goto next diagnostic")
-    map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', "Goto previous diagnostic")
     map('n', '<leader>cs', '<cmd>Telescope lsp_document_symbols<CR>', "Document symbols")
     map('n', '<leader>cd', '<cmd>Telescope diagnostics<CR>', "Diagnostics")
   end
