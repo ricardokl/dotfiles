@@ -36,11 +36,6 @@ local function splits_map(a, b, d)
   ))
 end
 
-splits_map('<c-h>', '<cmd>NavigatorLeft<cr>', "navigator move left")
-splits_map('<c-j>', '<cmd>NavigatorDown<cr>', "navigator move down")
-splits_map('<c-k>', '<cmd>NavigatorUp<cr>', "navigator move up")
-splits_map('<c-l>', '<cmd>NavigatorRight<cr>', "navigator move right")
-splits_map('<c-p>', '<cmd>NavigatorPrevious<cr>', "navigator move previous")
 splits_map('<c-left>', '<c-w>h', "move to split left")
 splits_map('<c-down>', '<c-w>j', "move to split down")
 splits_map('<c-up>', '<c-w>k', "move to split up")

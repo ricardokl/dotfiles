@@ -29,6 +29,13 @@ return {
 
   {
     "numToStr/Navigator.nvim",
+    keys = {
+      { '<c-h>', '<cmd>NavigatorLeft<cr>',     desc = "navigator move left" },
+      { '<c-j>', '<cmd>NavigatorDown<cr>',     desc = "navigator move down" },
+      { '<c-k>', '<cmd>NavigatorUp<cr>',       desc = "navigator move up" },
+      { '<c-l>', '<cmd>NavigatorRight<cr>',    desc = "navigator move right" },
+      { '<c-p>', '<cmd>NavigatorPrevious<cr>', desc = "navigator move previous" },
+    },
     config = function()
       require('Navigator').setup({})
     end
