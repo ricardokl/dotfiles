@@ -75,6 +75,17 @@ return {
   },
 
   {
-    'augmentcode/augment.vim'
+    'augmentcode/augment.vim',
+    init = function()
+      vim.g.augment_disable_tab_mapping = true
+      vim.g.augment_workspace_folders = {
+        -- '~/projects/onedark_nvim_rs/',
+        -- '~/projects/aider/',
+        -- '~/projects/straico-client/',
+        -- '~/projects/straico-proxy/',
+        -- '~/projects/aichat_nvim/',
+        '~/projects/augment_extras/',
+      }
+    end
   },
 }
