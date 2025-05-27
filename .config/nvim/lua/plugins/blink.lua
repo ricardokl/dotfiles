@@ -1,12 +1,5 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "saghen/blink.cmp"
-    },
-  },
-
-  {
     'saghen/blink.cmp',
     lazy = "false",
     dependencies = 'rafamadriz/friendly-snippets',
@@ -43,5 +36,4 @@ return {
     },
     opts_extend = { "sources.default" }
   }
-
 }

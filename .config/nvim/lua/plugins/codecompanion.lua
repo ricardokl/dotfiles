@@ -40,7 +40,8 @@ return {
       },
       adapters = {
         opts = {
-          show_defaults = false,
+          -- show_defaults = false,
+          show_defaults = true,
         },
         openrouter = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
@@ -59,12 +60,12 @@ return {
       },
     })
     vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
-    vim.keymap.set("n", "<leader>cs", select_model, { desc = "Select Gemini Model" })
+    -- vim.keymap.set("n", "<leader>cs", select_model, { desc = "Select Gemini Model" })
     -- Expand 'cc' into 'CodeCompanion' in the command line
     vim.cmd([[cab cc CodeCompanion]])
   end,
   keys = {
-    { "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Code Companion Chat"},
-    { "<leader>cc", "<cmd>CodeCompanion<cr>", mode = "v", desc = "Code Companion Chat"},
+    { "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Code Companion Chat" },
+    { "<leader>cc", "<cmd>CodeCompanion<cr>",            mode = "v",                  desc = "Code Companion Chat" },
   },
 }

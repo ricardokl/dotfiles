@@ -84,7 +84,9 @@ return {
         -- '~/projects/straico-client/',
         -- '~/projects/straico-proxy/',
         -- '~/projects/aichat_nvim/',
-        '~/projects/augment_extras/',
+        -- '~/projects/augment_extras/',
+        '~/projects/gitsigns.nvim/',
+        '~/projects/gitsignsrs_nvim/',
       }
     end
   },
