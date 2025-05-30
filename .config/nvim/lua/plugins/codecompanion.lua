@@ -28,8 +28,8 @@ return {
     require("codecompanion").setup({
       strategies = {
         chat = {
-          adapter = "openrouter",
-          -- adapter = "gemini"
+          -- adapter = "openrouter",
+          adapter = "gemini"
         },
         inline = {
           adapter = "openrouter",

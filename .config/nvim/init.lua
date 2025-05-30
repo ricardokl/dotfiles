@@ -2,37 +2,36 @@ require("config.autocmds")
 require('config.keymaps')
 require('config.opts')
 require("config.lazy")
+require("aichat_nvim")
 vim.cmd.colorscheme("onedark")
 
 vim.diagnostic.config({
-    virtual_lines = {
-        current_line = true,
-    },
-    virtual_text = true,
+  virtual_lines = {
+    current_line = true,
+  },
+  virtual_text = true,
 })
-vim.lsp.enable({'luals', 'pyright', 'vimls', 'rust-analyzer'})
+vim.lsp.enable({ 'luals', 'pyright', 'vimls', 'rust-analyzer' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
-
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end
 
     if client:supports_method('textDocument/formatting') then
-        vim.api.nvim_create_autocmd('BufWritePre', {
-          buffer = ev.buf,
-          callback = function()
-            vim.lsp.buf.format({bufnr = args.buf, id = client.id})
-          end,
-        })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = ev.buf,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+        end,
+      })
     end
 
     if client:supports_method('textDocument/inlayHint') then
-          vim.lsp.inlay_hint.enable(true, {bufnr = ev.buf})
+      vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
     end
-
   end,
 })
 
@@ -71,5 +70,5 @@ local function tab_prev()
   return '<Tab>'
 end
 
-vim.keymap.set('i', '<Tab>', tab_complete, {expr = true})
-vim.keymap.set('i', '<S-Tab>', tab_prev, {expr = true})
+vim.keymap.set('i', '<Tab>', tab_complete, { expr = true })
+vim.keymap.set('i', '<S-Tab>', tab_prev, { expr = true })
