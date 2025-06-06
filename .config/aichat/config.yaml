@@ -55,6 +55,18 @@ clients:
         supports_vision: false
         supports_function_calling: true
   - type: openai-compatible
+    name: openrouter
+    api_base: https://openrouter.ai/api/v1
+    models:
+      - name: deepseek/deepseek-r1-0528:free
+        max_input_tokens: 16000
+        supports_vision: false
+        supports_function_calling: true
+      - name: deepseek/deepseek-chat-v3-0324:free
+        max_input_tokens: 8000
+        supports_vision: false
+        supports_function_calling: true
+  - type: openai-compatible
     name: sambanova
     api_base: https://api.sambanova.ai/v1
     models:

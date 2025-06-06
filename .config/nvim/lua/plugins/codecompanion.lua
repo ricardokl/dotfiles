@@ -6,30 +6,29 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   config = function()
-    local default_model = "deepseek/deepseek-chat-v3-0324:free"
-    local available_models = {
-      "deepseek/deepseek-chat-v3-0324:free",
-      "deepseek/deepseek-r1:free",
-      "qwen/qwen3-235b-a22b:free",
-    }
+    local default_model = "deepseek/deepseek-r1-0528:free"
+    -- local available_models = {
+    --   "deepseek/deepseek-chat-v3-0324:free",
+    --   "deepseek/deepseek-r1-0528:free",
+    -- }
     local current_model = default_model
 
-    local function select_model()
-      vim.ui.select(available_models, {
-        prompt = "Select  Model:",
-      }, function(choice)
-        if choice then
-          current_model = choice
-          vim.notify("Selected model: " .. current_model)
-        end
-      end)
-    end
+    -- local function select_model()
+    --   vim.ui.select(available_models, {
+    --     prompt = "Select  Model:",
+    --   }, function(choice)
+    --     if choice then
+    --       current_model = choice
+    --       vim.notify("Selected model: " .. current_model)
+    --     end
+    --   end)
+    -- end
 
     require("codecompanion").setup({
       strategies = {
         chat = {
           -- adapter = "openrouter",
-          adapter = "gemini"
+          adapter = "gemini",
         },
         inline = {
           adapter = "openrouter",
@@ -60,7 +59,7 @@ return {
       },
     })
     vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
-    -- vim.keymap.set("n", "<leader>cs", select_model, { desc = "Select Gemini Model" })
+    -- vim.keymap.set("n", "<leader>cs", select_model, { desc = "Select Model" })
     -- Expand 'cc' into 'CodeCompanion' in the command line
     vim.cmd([[cab cc CodeCompanion]])
   end,
