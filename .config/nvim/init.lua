@@ -3,6 +3,7 @@ require('config.keymaps')
 require('config.opts')
 require("config.lazy")
 require("aichat_nvim")
+require("augment_agent")
 vim.cmd.colorscheme("onedark")
 
 vim.diagnostic.config({
