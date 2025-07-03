@@ -55,6 +55,20 @@ return {
               ["[o"] = { query = "@class.inner", desc = "Previous object" },
               ["[r"] = { query = "@return.inner", desc = "Previous return" },
             },
+            goto_next_end = {
+              ["]F"] = { query = "@function.outer", desc = "Next function end" },
+              ["]C"] = { query = "@call.outer", desc = "Next call end" },
+              ["]A"] = { query = "@parameter.inner", desc = "Next argument end" },
+              ["]O"] = { query = "@class.inner", desc = "Next object end" },
+              ["]R"] = { query = "@return.inner", desc = "Next return end" },
+            },
+            goto_previous_end = {
+              ["[F"] = { query = "@function.outer", desc = "Previous function end" },
+              ["[C"] = { query = "@call.outer", desc = "Previous call end" },
+              ["[A"] = { query = "@parameter.inner", desc = "Previous argument end" },
+              ["[O"] = { query = "@class.inner", desc = "Previous object end" },
+              ["[R"] = { query = "@return.inner", desc = "Previous return end" },
+            },
           },
         },
       })
