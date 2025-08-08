@@ -9,3 +9,4 @@
 .config/aichat/rags/
 *.so
 *.zwc
+.aider.*

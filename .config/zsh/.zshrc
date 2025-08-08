@@ -92,6 +92,7 @@ alias ls='lsd --group-dirs first'
 alias lt='lsd --group-dirs first --tree --depth=2'
 alias aider='aider --config /home/ricardo/.config/aider/conf.yaml'
 alias aider_architect='aider --config /home/ricardo/.config/aider/config.yaml --architect'
+alias rovo='acli rovodev run'
 
 alias yt='yt-dlp --paths /data/data/com.termux/files/home/storage/movies/ "$(termux-clipboard-get)"'
 # }}}
@@ -112,3 +113,6 @@ alias 9='cd -9'
 
 
 # . "$HOME/.local/share/../bin/env"
+
+# opencode
+export PATH=/home/ricardo/.opencode/bin:$PATH

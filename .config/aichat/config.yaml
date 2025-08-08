@@ -34,36 +34,40 @@ clients:
         max_input_tokens: 150000
         supports_vison: false
         supports_function_calling: true
-      - name: anthropic/claude-3.7-sonnet:thinking
-        max_input_tokens: 150000
-        supports_vison: false
-        supports_function_calling: true
-      - name: deepseek/deepseek-chat-v3-0324
-        max_input_tokens: 120000
-        supports_vison: false
-        supports_function_calling: true
-      - name: deepseek/deepseek-r1:nitro
-        max_input_tokens: 120000
-        supports_vison: false
-        supports_function_calling: true
       - name: openai/o3-mini-high
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: false
-      - name: google/gemini-2.5-pro-exp-03-25:free
-        max_input_tokens: 150000
-        supports_vision: false
+  - type: openai-compatible
+    name: moonshot
+    api_base: https://api.moonshot.ai/v1
+    models:
+      - name: kimi-k2-0711-preview
+        max_input_tokens: 64000
+        suports_vison: false
         supports_function_calling: true
   - type: openai-compatible
     name: openrouter
     api_base: https://openrouter.ai/api/v1
     models:
       - name: deepseek/deepseek-r1-0528:free
-        max_input_tokens: 16000
+        max_input_tokens: 162000
         supports_vision: false
         supports_function_calling: true
       - name: deepseek/deepseek-chat-v3-0324:free
-        max_input_tokens: 8000
+        max_input_tokens: 16000
+        supports_vision: false
+        supports_function_calling: true
+      - name: moonshotai/kimi-k2:free
+        max_input_tokens: 64000
+        supports_vision: false
+        supports_function_calling: true
+      - name: qwen/qwen3-235b-a22b-07-25:free
+        max_input_tokens: 262000
+        supports_vision: false
+        supports_function_calling: false
+      - name: openrouter/horizon-alpha
+        max_input_tokens: 256000
         supports_vision: false
         supports_function_calling: true
   - type: openai-compatible
@@ -71,11 +75,11 @@ clients:
     api_base: https://api.sambanova.ai/v1
     models:
       - name: DeepSeek-R1
-        max_input_tokens: 16000
+        max_input_tokens: 33000
         supports_vision: false
         supports_function_calling: true
       - name: DeepSeek-V3-0324
-        max_input_tokens: 8000
+        max_input_tokens: 32000
         supports_vision: false
         supports_function_calling: true
   - type: openai-compatible
@@ -86,15 +90,11 @@ clients:
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
-      - name: deepseek-r1-distill-llama-70b
+      - name: qwen-qwq-32b
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
-      - name: meta-llama/llama-4-maverick-17b-128e-instruct
-        max_input_tokens: 131072
-        supports_vision: false
-        supports_function_calling: true
-      - name: qwen-qwq-32b
+      - name: moonshotai/kimi-k2-instruct
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true

@@ -1,6 +1,6 @@
 ---
-model: local:anthropic/claude-3.7-sonnet:thinking
-temperature: 0.0
+model: openrouter:moonshotai/kimi-k2:free
+temperature: 0.2
 ---
 Act as an expert software developer and make changes to source code.
 You are diligent and tireless!

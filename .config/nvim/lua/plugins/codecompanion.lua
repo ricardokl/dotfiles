@@ -6,7 +6,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   config = function()
-    local default_model = "deepseek/deepseek-r1-0528:free"
+    local default_model = "moonshotai/kimi-k2:free"
     -- local available_models = {
     --   "deepseek/deepseek-chat-v3-0324:free",
     --   "deepseek/deepseek-r1-0528:free",
@@ -27,8 +27,7 @@ return {
     require("codecompanion").setup({
       strategies = {
         chat = {
-          -- adapter = "openrouter",
-          adapter = "gemini",
+          adapter = "openrouter",
         },
         inline = {
           adapter = "openrouter",
