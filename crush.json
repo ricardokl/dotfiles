@@ -1,0 +1,23 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "lsp": {
+    "rust": {
+      "command": "rust-analyzer"
+    }
+  },
+  "permissions": {
+    "allowed_tools": [
+      "mcp_sequential-thinking_sequentialthinking"
+    ]
+  },
+  "mcp": {
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    }
+  }
+}
