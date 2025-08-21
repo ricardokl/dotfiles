@@ -12,7 +12,7 @@ BAT_PAGER="$PREFIX/bin/most"
 export EDITOR VISUAL PAGER BAT_PAGER
 
 # Common settings for both environments
-export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH"
 export PYTHONSTARTUP="$(python -m jedi repl)"
 export FZF_DEFAULT_OPTS="--ansi"
 export ZDOTDIR=$HOME/.config/zsh
