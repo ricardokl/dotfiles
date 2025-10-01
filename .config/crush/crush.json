@@ -19,5 +19,46 @@
         "@modelcontextprotocol/server-sequential-thinking"
       ]
     }
+  },
+  "providers": {
+    "straico": {
+      "name": "Straico",
+      "base_url": "https://api.straico.com/v0",
+      "type": "openai",
+      "api_key": "$STRAICO_API_KEY",
+      "models": [
+        {
+          "name": "GPT-5",
+          "id": "openai/gpt-5",
+          "context_window": 64000,
+          "default_max_tokens": 64000
+        },
+        {
+          "name": "GPT-5 chat",
+          "id": "openai/gpt-5-chat",
+          "context_window": 64000,
+          "default_max_tokens": 64000
+        },
+        {
+          "name": "Sonnet 3.7",
+          "id": "anthropic/claude-3.7-sonnet",
+          "context_window": 64000,
+          "default_max_tokens": 64000
+        }
+      ]
+    },
+    "ollama": {
+      "name": "Ollama",
+      "base_url": "http://localhost:11434/v1/",
+      "type": "openai",
+      "models": [
+        {
+          "name": "Qwen 3 30B",
+          "id": "qwen3:30b",
+          "context_window": 256000,
+          "default_max_tokens": 20000
+        }
+      ]
+    }
   }
 }

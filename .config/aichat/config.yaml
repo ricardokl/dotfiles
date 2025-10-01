@@ -1,13 +1,12 @@
-# model: local:anthropic/claude-3.7-sonnet
 # model: groq:llama-3.3-70b-versatile
-model: groq:llama-3.3-70b-versatile
+model: sambanova:DeepSeek-V3.1
 temperature: 0
-stream: true
+stream: false
 save: false
 keybindings: vi
 editor: nvim
 rag_reranker_model: jina:jina-reranker-v2-base-multilingual
-rag_embedding_model: jina:jina-embeddings-v2-base-code
+rag_embedding_model: jina:jina-embeddings-v3
 rag_top_k: 10
 rag_template: |
   Use the following context as your learned knowledge, inside <context></context> XML tags.
@@ -25,60 +24,62 @@ rag_template: |
   Query: __INPUT__
 highlight: true
 function_calling: true
+document_loaders:
+  jina: 'curl -fsSL https://r.jina.ai/$1 -H "Authorization: Bearer $JINA_API_KEY"'
 clients:
   - type: openai-compatible
-    name: local
-    api_base: http://localhost:8000/v1
+    name: straico
+    api_base: https://api.straico.com/v0
     models:
-      - name: anthropic/claude-3.7-sonnet
-        max_input_tokens: 150000
+      - name: anthropic/claude-sonnet-4
+        max_input_tokens: 128000
         supports_vison: false
         supports_function_calling: true
-      - name: openai/o3-mini-high
+      - name: openai/gpt-5
+        max_input_tokens: 128000
+        supports_vision: false
+        supports_function_calling: false
+      - name: openai/gpt-5-chat
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: false
   - type: openai-compatible
-    name: moonshot
-    api_base: https://api.moonshot.ai/v1
+    name: local
+    api_base: http://localhost:8000/v1
     models:
-      - name: kimi-k2-0711-preview
-        max_input_tokens: 64000
-        suports_vison: false
-        supports_function_calling: true
+      - name: openai/gpt-5
+        max_input_tokens: 256000
+        supports_vision: false
+        supports_function_calling: false
   - type: openai-compatible
     name: openrouter
     api_base: https://openrouter.ai/api/v1
     models:
-      - name: deepseek/deepseek-r1-0528:free
-        max_input_tokens: 162000
+      - name: qwen/qwen3-coder:free
+        max_input_tokens: 256000
         supports_vision: false
         supports_function_calling: true
-      - name: deepseek/deepseek-chat-v3-0324:free
-        max_input_tokens: 16000
+      - name: z-ai/glm-4.5-air:free
+        max_input_tokens: 128000
+        supports_vision: false
+        supports_function_calling: true
+      - name: deepseek/deepseek-chat-v3.1:free
+        max_input_tokens: 128000
+        supports_vision: false
+        supports_function_calling: true
+      - name: nvidia/nemotron-nano-9b-v2:free
+        max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
       - name: moonshotai/kimi-k2:free
-        max_input_tokens: 64000
-        supports_vision: false
-        supports_function_calling: true
-      - name: qwen/qwen3-235b-a22b-07-25:free
-        max_input_tokens: 262000
-        supports_vision: false
-        supports_function_calling: false
-      - name: openrouter/horizon-alpha
-        max_input_tokens: 256000
+        max_input_tokens: 32000
         supports_vision: false
         supports_function_calling: true
   - type: openai-compatible
     name: sambanova
     api_base: https://api.sambanova.ai/v1
     models:
-      - name: DeepSeek-R1
-        max_input_tokens: 33000
-        supports_vision: false
-        supports_function_calling: true
-      - name: DeepSeek-V3-0324
+      - name: DeepSeek-V3.1
         max_input_tokens: 32000
         supports_vision: false
         supports_function_calling: true
@@ -90,11 +91,11 @@ clients:
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
-      - name: qwen-qwq-32b
+      - name: groq/compound
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
-      - name: moonshotai/kimi-k2-instruct
+      - name: moonshotai/kimi-k2-instruct-0905
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
@@ -103,6 +104,9 @@ clients:
     api_base: https://api.jina.ai/v1
     models:
       - name: jina-embeddings-v2-base-code
+        type: embedding
+        max_input_tokens: 8192
+      - name: jina-embeddings-v3
         type: embedding
         max_input_tokens: 8192
       - name: jina-reranker-v2-base-multilingual
