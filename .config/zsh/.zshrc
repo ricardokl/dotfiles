@@ -31,6 +31,7 @@ compctl -K _pip_completion pip
 # bindkey '^[[B' down-line-or-history
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey ' ' magic-space # auto-exapand things like '!!'
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 source $HOME/.config/zsh/fzf.zsh
 
@@ -90,11 +91,8 @@ alias la='lsd --group-dirs first -A'
 alias ll='lsd --group-dirs first -l'
 alias ls='lsd --group-dirs first'
 alias lt='lsd --group-dirs first --tree --depth=2'
-alias aider='aider --config /home/ricardo/.config/aider/conf.yaml'
-alias aider_architect='aider --config /home/ricardo/.config/aider/config.yaml --architect'
-alias rovo='acli rovodev run'
 
-alias yt='yt-dlp --paths /data/data/com.termux/files/home/storage/movies/ "$(termux-clipboard-get)"'
+# alias yt='yt-dlp --paths /data/data/com.termux/files/home/storage/movies/ "$(termux-clipboard-get)"'
 # }}}
 
 # {{{ Navegação
@@ -112,7 +110,16 @@ alias 9='cd -9'
 
 
 
-# . "$HOME/.local/share/../bin/env"
-
 # opencode
 export PATH=/home/ricardo/.opencode/bin:$PATH
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Temporary fix that should have some other solution
+unset PREFIX
+nvm use --lts
+
+# bun completions
+[ -s "/home/ricardo/.bun/_bun" ] && source "/home/ricardo/.bun/_bun"

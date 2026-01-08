@@ -1,6 +1,6 @@
 typeset -U PATH
 
-PREFIX="/usr"
+# PREFIX="/usr"
 
 # Set paths using PREFIX variable
 EDITOR="$PREFIX/bin/nvim"
@@ -20,3 +20,6 @@ export AZURE_API_BASE="https://models.inference.ai.azure.com/"
 export AZURE_API_KEY=$GITHUB_TOKEN
 # Source API keys if file exists
 [[ -f $HOME/api ]] && source $HOME/api
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -30,6 +30,10 @@ clients:
     name: straico
     api_base: https://api.straico.com/v2
     models:
+      - name: claude-opus-4-5
+        max_input_tokens: 32000
+        supports_function_calling: false
+        supports_vison: false
       - name: anthropic/claude-sonnet-4.5
         max_input_tokens: 128000
         supports_vison: false
