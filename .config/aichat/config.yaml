@@ -1,4 +1,4 @@
-model: cerebras:zai-glm-4.6
+model: cerebras:gpt-oss-120b
 temperature: 1
 stream: false
 save: false
@@ -30,29 +30,33 @@ clients:
     name: straico
     api_base: https://api.straico.com/v2
     models:
+      - name: moonshotai/kimi-k2-thinking
+        max_input_tokens: 21000
+        supports_function_calling: false
+        supports_vison: false
+      - name: z-ai/glm-4.6
+        supports_function_calling: false
+        supports_vison: false
       - name: claude-opus-4-5
         max_input_tokens: 32000
         supports_function_calling: false
         supports_vison: false
       - name: anthropic/claude-sonnet-4.5
-        max_input_tokens: 128000
+        max_input_tokens: 8000
         supports_vison: false
         supports_function_calling: false
-      - name: openai/gpt-5
+      - name: openai/gpt-5.2
+        max_input_tokens: 33000
         supports_vision: false
         supports_function_calling: false
-      - name: openai/gpt-5-chat
-        max_input_tokens: 128000
+      - name: openai/gpt-5.2-chat
+        max_input_tokens: 33000
         supports_vision: false
         supports_function_calling: false
   - type: openai-compatible
     name: local
     api_base: http://localhost:8000/v1
     models:
-      - name: openai/gpt-5
-        max_input_tokens: 256000
-        supports_vision: false
-        supports_function_calling: false
       - name: anthropic/claude-sonnet-4
         max_input_tokens: 128000
         supports_vison: false
@@ -61,16 +65,8 @@ clients:
     name: cerebras
     api_base: https://api.cerebras.ai/v1
     models:
-      - name: qwen-3-32b
-        max_input_tokens: 65000
-        supports_vision: false
-        supports_function_calling: true
       - name: gpt-oss-120b
         max_input_tokens: 65000
-        supports_vision: false
-        supports_function_calling: true
-      - name: zai-glm-4.6
-        max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
   - type: openai-compatible
@@ -81,16 +77,20 @@ clients:
         max_input_tokens: 256000
         supports_vision: false
         supports_function_calling: true
+      - name: qwen/qwen3-coder:free
+        max_input_tokens: 256000
+        supports_vision: false
+        supports_function_calling: true
       - name: z-ai/glm-4.5-air:free
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
-      - name: deepseek/deepseek-chat-v3.1:free
+      - name: qwen/qwen3-next-80b-a3b-instruct:free
         max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
-      - name: moonshotai/kimi-k2:free
-        max_input_tokens: 32000
+      - name: openai/gpt-oss-120b:free
+        max_input_tokens: 128000
         supports_vision: false
         supports_function_calling: true
   - type: openai-compatible

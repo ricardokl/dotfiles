@@ -91,6 +91,10 @@ alias la='lsd --group-dirs first -A'
 alias ll='lsd --group-dirs first -l'
 alias ls='lsd --group-dirs first'
 alias lt='lsd --group-dirs first --tree --depth=2'
+alias server-mode='sudo systemctl isolate multi-user.target'
+alias desktop-mode='sudo systemctl isolate graphical.target'
+alias stop-gui='sudo systemctl stop sddm'
+alias start-gui='sudo systemctl start sddm'
 
 # alias yt='yt-dlp --paths /data/data/com.termux/files/home/storage/movies/ "$(termux-clipboard-get)"'
 # }}}
