@@ -1,8 +1,7 @@
 require("config.autocmds")
 require('config.keymaps')
 require('config.opts')
-require("config.lazy")
-require("aichat_nvim")
+require("config.plugins")
 vim.cmd.colorscheme("onedark")
 
 vim.diagnostic.config({
